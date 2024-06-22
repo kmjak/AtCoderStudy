@@ -8,6 +8,6 @@ int main()
     cin >> n >> k >> s;
     for (int i = 0; i < n - k - 1; i++)
     {
-        cout << s.substr(i, k) << endl;
+        cout << s.substr(i, i + k) << endl;
     }
 }

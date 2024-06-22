@@ -9,26 +9,10 @@ int main()
     s_y++;
     t_x++;
     t_y++;
-    long long int a_x = s_x - t_x;
-    long long int a_y = s_y - t_y;
+    long long int a_x = abs(s_x - t_x);
+    long long int a_y = abs(s_y - t_y);
     long long int m = min(a_x, a_y);
     c = m;
-    if (s_x == abs(s_x))
-    {
-        s_x -= m;
-    }
-    else
-    {
-        s_x += m;
-    }
-    if (s_x == abs(s_y))
-    {
-        s_y -= m;
-    }
-    else
-    {
-        s_y += m;
-    }
     s_x = abs(s_x) - m;
     s_y = abs(s_y) - m;
     if (s_x == t_x)
