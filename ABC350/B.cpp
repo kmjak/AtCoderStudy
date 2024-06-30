@@ -14,5 +14,5 @@ int main()
             d.insert(temp);
         }
     }
-    cout << d.size() << endl;
+    cout << n - d.size() << endl;
 }
