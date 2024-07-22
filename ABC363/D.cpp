@@ -2,66 +2,105 @@
 #define ll long long int
 #define vi vector<int>
 #define vll vector<ll>
-#define rep(s,n) for(int i = s; i < n; i++)
+#define rep(i,s,n) for(int i = s; i < n; i++)
 using namespace std;
-int main()
-{
-  ll n;
-  cin >> n;
-  ll c = 0;
-  ll i = 0;
-  // while(true){
+
+int main() {
+  // 10, 9, 9, 90, 90, 900, 900, 9000, 9000, 90000, 90000, 900000
+  // int c = 0;
+  // bool flag;
+  // for(int i = 100000; i < 1000000; i++) {
   //   string temp = to_string(i);
-  //   int l = temp.size();
-  //   bool flag = true;
-  //   for(int j = 0; j < (l/2); j++){
-  //     if(temp[j] != temp[l - j - 1]){
+  //   flag = true;
+  //   for(int j = 0; j < temp.size()/2; j++) {
+  //     if(temp[j] != temp[temp.size()-1-j]) {
   //       flag = false;
   //       break;
   //     }
   //   }
-  //   if(flag){
+  //   if(flag) {
+  //     cout << i << endl;
   //     c++;
   //   }
-  //   if(c == n){
-  //     cout << i << endl;
-  //     return 0;
+  // }
+  // cout << c << endl;
+
+  // ll i = 0;
+  // bool flag;
+  // while(true) {
+  //   string temp = to_string(i);
+  //   flag = true;
+  //   rep(j,0,temp.size()) {
+  //     if(temp[j] != temp[temp.size()-1-j]) {
+  //       flag = false;
+  //       break;
+  //     }
+  //   }
+  //   if(flag) {
+  //     if(temp.size() > 1 && n >= pow(10, temp.size() - 1)) {
+  //       n -= pow(10, temp.size() - 2);
+  //       int t = ((temp[0] - '0') + 1) * pow(10, temp.size() - 1);
+  //       i = t;
+  //     } else {
+  //       n--;
+  //     }
+  //   }
+  //   if(n == 0) {
+  //     break;
   //   }
   //   i++;
   // }
+  // cout << i << endl;
+  ll n;
+  cin >> n;
+  ll m = 9;
+  int i = 1;
+  ll j = 1;
+  n--;
+  if(n == 0){
+    cout << 0 << endl;
+    return 0;
+  }
+
   while(true){
-    string temp = to_string(i);
-    int l = temp.size();
-    bool flag = true;
-    for(int j = 0; j < l / 2; j++){
-      if(temp[j] != temp[l - j - 1]){
+    if(n - m > 0){
+      n -= m;
+    }else{
+      break;
+    }
+    if(i % 2 == 0){
+      m *= 10;
+    }
+    j *= 10;
+    i++;
+  }
+
+
+  bool flag;
+  while(true) {
+    string temp = to_string(j);
+    flag = true;
+    rep(k,0,temp.size()) {
+      if(temp[k] != temp[temp.size()-1-k]) {
         flag = false;
         break;
       }
     }
-    bool addi = true;
-    if(flag){
-      cout << c << endl;
-      if(n >= c + pow(10,l-1)){
-        c += pow(10,l-1);
-        i += pow(10,l-1);
-        addi = false;
-      }else{
-        for(int j = l - 1; j > 0; j--){
-          if(n >= c + pow(10,j-1)){
-            c += pow(10,j-1);
-            i += pow(10,j-1);
-            addi = false;
-          }
-        }
+    if(flag) {
+      if(temp.size() > 1 && n >= pow(10, temp.size() - 1)) {
+        n -= pow(10, temp.size() - 2);
+        int t = ((temp[0] - '0') + 1) * pow(10, temp.size() - 1);
+        j = t;
+      } else {
+        n--;
       }
     }
-    if(c == n){
-      cout << i << endl;
-      return 0;
+    if(n == 0) {
+      break;
     }
-    if(addi){
-      i++;
-    }
+    j++;
   }
+  cout << j << endl;
+
+  return 0;
 }
