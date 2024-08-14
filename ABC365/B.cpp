@@ -13,5 +13,22 @@
 using namespace std;
 int main()
 {
+  int n;
+  cin >> n;
+  vi a(n);
+  rep(i, 0, n)
+  {
+    cin >> a[i];
+  }
+  vi temp = a;
+  sort(rall(temp));
+  rep(i, 0, n)
+  {
+    if (a[i] == temp[1])
+    {
+      cout << i+1 << endl;
+      return 0;
+    }
+  }
   return 0;
 }

@@ -13,5 +13,27 @@
 using namespace std;
 int main()
 {
+  int n,m;
+  cin >> n >> m;
+  vi a(n);
+  rep(i, 0, n){
+    cin >> a[i];
+  }
+  if(m >= accumulate(all(a), 0)){
+    cout << "infinite" << endl;
+    return 0;
+  }
+  int x = 1;
+  int ans = 0;
+  while(true){
+    rep(i, 0, n){
+      ans += min(x, a[i]);
+      if(ans > m){
+        cout << x << endl;
+        return 0;
+      }
+    }
+    x++;
+  }
   return 0;
 }
