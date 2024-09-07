@@ -7,8 +7,8 @@
 #define vs vector<string>
 #define rep(i,s,n) for(auto i = s; i < n; i++)
 #define rrep(i,s,n) for(int i = s; i >= n; i--)
-#define repa(i, x) for(auto i : x)  // 順方向
-#define repra(i, x) for(auto i = x.rbegin(); i != x.rend(); ++i)  // 逆方向
+#define repa(i, x) for(auto i : x)
+#define repra(i, x) for(auto i = x.rbegin(); i != x.rend(); ++i)
 #define all(x) x.begin(), x.end()
 #define rall(x) x.rbegin(), x.rend()
 using namespace std;
