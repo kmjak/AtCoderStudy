@@ -11,7 +11,7 @@ fi
 mkdir -p "$FOLDER_NAME"
 
 for file in A B C D E F G; do
-  cp "$TEMPLATE_FILE" "$FOLDER_NAME/${file}.cpp"
+  cp "$TEMPLATE_FILE" "$FOLDER_NAME/$file.cpp"
 done
 
 
