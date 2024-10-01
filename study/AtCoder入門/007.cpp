@@ -15,24 +15,18 @@
 #define rall(x) x.rbegin(), x.rend()
 using namespace std;
 
-template<typename T> inline bool chmin(T &a, T b) {
-  if (a > b) {
-    a = b;
-    return true;
-  }
-  return false;
-}
-
-template<typename T> inline bool chmax(T &a, T b) {
-  if (a < b) {
-    a = b;
-    return true;
-  }
-  return false;
-}
-
-
 int main()
 {
+  int n;
+  cin >> n;
+  vi a(n);
+  rep(i,0,n) cin >> a[i];
+  sort(rall(a));
+  int diff = 0;
+  rep(i,0,n){
+    if(i % 2 == 0) diff += a[i];
+    else diff -= a[i];
+  }
+  cout << diff << endl;
   return 0;
 }

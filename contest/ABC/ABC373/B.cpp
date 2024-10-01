@@ -15,24 +15,25 @@
 #define rall(x) x.rbegin(), x.rend()
 using namespace std;
 
-template<typename T> inline bool chmin(T &a, T b) {
-  if (a > b) {
-    a = b;
-    return true;
+int main() {
+  string S;
+  cin >> S;
+
+  unordered_map<char, int> k;
+  rep (i,0,26) {
+    k[S[i]] = i + 1;
   }
-  return false;
-}
 
-template<typename T> inline bool chmax(T &a, T b) {
-  if (a < b) {
-    a = b;
-    return true;
+  int ans = 0;
+  int prev = k['A'];
+
+  for (char c = 'B'; c <= 'Z'; c++) {
+    int n = k[c];
+    ans += abs(n - prev);
+    prev = n;
   }
-  return false;
-}
 
+  cout << ans << endl;
 
-int main()
-{
   return 0;
 }

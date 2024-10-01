@@ -31,8 +31,26 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
+int DPs(vi &h, int n)
+{
+  vi dp(n+1, INT_MAX);
+  dp[0] = 0;
+  dp[n] = 0;
 
+  int i = 0;
+  rep(i, 0, n - 1) {
+    chmin(dp[i + 1], dp[i] + abs(h[i] - h[i + 1]));
+    chmin(dp[i + 2], dp[i] + abs(h[i] - h[i + 2]));
+  }
+
+  return dp[n - 1];
+}
 int main()
 {
+  int n;
+  cin >> n;
+  vi h(n);
+  rep(i, 0, n) cin >> h[i];
+  cout << DPs(h, n) << endl;
   return 0;
 }

@@ -34,5 +34,19 @@ template<typename T> inline bool chmax(T &a, T b) {
 
 int main()
 {
+  int n,k;
+  cin >> n >> k;
+  vi h(n+k,0);
+  rep(i,0,n) cin >> h[i];
+
+  vi dp(n+k,INT_MAX);
+  dp[0] = 0;
+  rep(i,0,n){
+    rep(j,1,k+1){
+      chmin(dp[i+j], dp[i] + abs(h[i] - h[i+j]));
+    }
+  }
+
+  cout << dp[n-1] << endl;
   return 0;
 }

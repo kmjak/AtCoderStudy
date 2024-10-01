@@ -15,24 +15,22 @@
 #define rall(x) x.rbegin(), x.rend()
 using namespace std;
 
-template<typename T> inline bool chmin(T &a, T b) {
-  if (a > b) {
-    a = b;
-    return true;
-  }
-  return false;
-}
-
-template<typename T> inline bool chmax(T &a, T b) {
-  if (a < b) {
-    a = b;
-    return true;
-  }
-  return false;
-}
-
-
 int main()
 {
+  int n;
+  cin >> n;
+  int a_max = INT_MIN;
+  int b_max = INT_MIN;
+  rep(i, 0, n){
+    int a;
+    cin >> a;
+    a_max = max(a_max, a);
+  }
+  rep(i, 0, n){
+    int b;
+    cin >> b;
+    b_max = max(b_max, b);
+  }
+  cout << a_max + b_max << endl;
   return 0;
 }
