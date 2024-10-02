@@ -9,14 +9,15 @@
 #define pb push_back
 #define eb emplace_back
 
-using ll = long long int;
-using vi = vector<int>;
-using vll = vector<ll>;
-using vvi = vector<vi>;
-using vvll = vector<vll>;
-using vs = vector<string>;
-using vvs = vector<vs>;
+#define ll long long int
+#define vi vector<int>
+#define vll vector<ll>
+#define vvi vector<vi>
+#define vvll vector<vll>
+#define vs vector<string>
+
 using namespace std;
+
 
 template<typename T> inline bool chmin(T &a, T b) {
   if (a > b) {
@@ -37,5 +38,10 @@ template<typename T> inline bool chmax(T &a, T b) {
 
 int main()
 {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  cout.tie(0);
+
+
   return 0;
 }
