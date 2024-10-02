@@ -37,6 +37,5 @@ template<typename T> inline bool chmax(T &a, T b) {
 
 int main()
 {
-  vi a(3);
   return 0;
 }
