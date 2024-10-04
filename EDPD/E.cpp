@@ -13,6 +13,9 @@
 #define repra(i, x) for(auto i = x.rbegin(); i != x.rend(); ++i)
 #define all(x) x.begin(), x.end()
 #define rall(x) x.rbegin(), x.rend()
+#define pb push_back
+#define eb emplace_back
+
 using namespace std;
 
 template<typename T> inline bool chmin(T &a, T b) {
@@ -34,5 +37,38 @@ template<typename T> inline bool chmax(T &a, T b) {
 
 int main()
 {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  cout.tie(0);
+
+  ll n,w;
+  cin >> n >> w;
+  ll max_v = pow(10,3) * n + 10;
+  vector<pair<ll,ll>> items;
+  rep(i,0,n){
+    ll W,V;
+    cin >> W >> V;
+    items.pb(make_pair(W,V));
+  }
+
+  vvll dp(n+1, vll(max_v,w+1));
+  dp[0][0] = 0;
+
+  rep(i,0,n){
+    rep(j,0,max_v){
+      chmin(dp[i+1][j],dp[i][j]);
+      if(j >= items[i].second){
+        chmin(dp[i+1][j],items[i].first + dp[i][j - items[i].second]);
+      }
+    }
+  }
+
+  ll res = 0;
+  rep(i,0,max_v){
+    if(dp[n][i] <= w) res = i;
+  }
+
+  cout << res << endl;
+
   return 0;
 }

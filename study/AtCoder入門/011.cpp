@@ -42,45 +42,18 @@ int main()
   cin.tie(0);
   cout.tie(0);
 
-  string s, t;
-  cin >> s >> t;
+  int n,y;
+  cin >> n >> y;
+  y /= 1000;
 
-  // DPテーブルの初期化
-  vector<vector<int>> dp(s.size() + 1, vector<int>(t.size() + 1, 0));
-
-  // LCSの長さを計算
-  rep(i, 1, s.size() + 1) {
-    rep(j, 1, t.size() + 1) {
-      if (s[i - 1] == t[j - 1]) {
-        dp[i][j] = dp[i - 1][j - 1] + 1;
-      } else {
-        dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
-      }
+  rep(i,0,n+1){
+    rep(j,0,n-i+1){
+      if((i * 9 + j * 4 + n) == y){
+        cout << i << " " << j << " " << n - j - i << endl;
+        return 0;
+      }else if ((i * 9 + j * 4 + n) > y) break;
     }
   }
-  repa(x,dp){
-    repa(y,x){
-      cout << y << " ";
-    }
-    cout << endl;
-  }
-
-  // LCSの復元
-  string lcs = "";
-  int i = s.size(), j = t.size();
-  while (i > 0 && j > 0) {
-    if (s[i - 1] == t[j - 1]) {
-      lcs += s[i - 1];
-      i--;
-      j--;
-    } else if (dp[i - 1][j] > dp[i][j - 1]) {
-      i--;
-    } else {
-      j--;
-    }
-  }
-  reverse(lcs.begin(), lcs.end());
-  cout << lcs << endl;
-
+  cout << "-1 -1 -1" << endl;
   return 0;
 }

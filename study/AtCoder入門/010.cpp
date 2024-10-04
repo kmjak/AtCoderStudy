@@ -13,6 +13,9 @@
 #define repra(i, x) for(auto i = x.rbegin(); i != x.rend(); ++i)
 #define all(x) x.begin(), x.end()
 #define rall(x) x.rbegin(), x.rend()
+#define pb push_back
+#define eb emplace_back
+
 using namespace std;
 
 template<typename T> inline bool chmin(T &a, T b) {
@@ -31,44 +34,38 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
+int main() {
+  int h, w;
+  cin >> h >> w;
 
-// int main()
-// {
-//   int n,k;
-//   cin >> n >> k;
-//   vi h(n+k,0);
-//   rep(i,0,n) cin >> h[i];
+  vector<vector<char>> c(h, vector<char>(w));
+  vvi f(h, vi(w, 0));
 
-//   vi dp(n+k,INT_MAX);
-//   dp[0] = 0;
-//   rep(i,0,n){
-//     rep(j,1,k+1){
-//       chmin(dp[i+j], dp[i] + abs(h[i] - h[i+j]));
-//     }
-//   }
-
-//   cout << dp[n-1] << endl;
-//   return 0;
-// }
-
-
-// 復習
-int main()
-{
-  int n,k;
-  cin >> n >> k;
-  vi h(n+k);
-  vi dp(n+k,INT_MAX);
-  rep(i,0,n) cin >> h[i];
-  rep(i,0,k) h[n+i] = h[n-1];
-  dp[0] = 0;
-  rep(i,0,n){
-    rep(j,1,k+1){
-      chmin(dp[i+j],dp[i] + abs(h[i] - h[i+j]));
+  rep(i, 0, h) {
+    rep(j, 0, w) {
+      cin >> c[i][j];
+      if (c[i][j] == '#') {
+        rep(k, -1, 2) {
+          rep(l, -1, 2) {
+            int ni = i + k, nj = j + l;
+            if (ni >= 0 && ni < h && nj >= 0 && nj < w) {
+              f[ni][nj]++;
+            }
+          }
+        }
+      }
     }
   }
 
-  cout << dp[n] << endl;
+  rep(i, 0, h) {
+    rep(j, 0, w) {
+      if (c[i][j] == '#')
+        cout << '#';
+      else
+        cout << f[i][j];
+    }
+    cout << endl;
+  }
 
   return 0;
 }
