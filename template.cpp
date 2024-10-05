@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 #define rep(i,s,n) for(auto i = s; i < n; i++)
-#define rrep(i,s,n) for(auto i = s; i >= n; i--)
+#define rrep(i,s,n) for(auto i = s; i > n; i--)
 #define repa(i, x) for(auto i : x)
 #define rrepa(i, x) for(auto i = x.rbegin(); i != x.rend(); ++i)
 
