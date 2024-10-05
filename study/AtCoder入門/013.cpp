@@ -47,5 +47,37 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  // int n;
+  // cin >> n;
+  // vector<map<char,int>> strings(n);
+  // rep(i,0,n){
+  //   string s;
+  //   cin >> s;
+  //   repa(x,s){
+  //     strings[i][x]++;
+  //   }
+  // }
+  // int res = 0;
+  // rep(i,0,n-1){
+  //   rep(j,i+1,n){
+  //     if(strings[i] == strings[j]) res++;
+  //   }
+  // }
+  // cout << res << endl;
+
+  int n;
+  cin >> n;
+  map<string,ll> N;
+  rep(i,0,n){
+    string s;
+    cin >> s;
+    sort(all(s));
+    N[s]++;
+  }
+  ll res = 0;
+  repa(x,N){
+    res += x.second * (x.second - 1) / 2;
+  }
+  cout << res << endl;
   return 0;
 }
