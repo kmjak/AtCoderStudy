@@ -35,37 +35,64 @@ template<typename T> inline bool chmax(T &a, T b) {
 }
 
 
+// int main()
+// {
+//   ios_base::sync_with_stdio(0);
+//   cin.tie(0);
+//   cout.tie(0);
+
+//   int n,w;
+//   cin >> n >> w;
+//   vector<pair<ll,ll>> item;
+//   item.pb(make_pair(0,0));
+//   rep(i,0,n){
+//     ll x,y;
+//     cin >> x >> y;
+//     item.pb(make_pair(x,y));
+//   }
+
+//   vvll dp(n+1,vll(w+1,0));
+
+//   rep(i,1,n+1){
+//     rep(j,0,w+1){
+//       dp[i][j] = dp[i-1][j];
+//       if(j >= item[i].first){
+//         chmax(dp[i][j],dp[i-1][j-item[i].first] + item[i].second);
+//       }
+//     }
+//   }
+
+//   ll res = 0;
+//   rep(i,1,w+1){
+//     chmax(res, dp[n][i]);
+//   }
+//   cout << res << endl;
+//   return 0;
+// }
+
+
 int main()
 {
-  ios_base::sync_with_stdio(0);
-  cin.tie(0);
-  cout.tie(0);
-
   int n,w;
   cin >> n >> w;
-  vector<pair<ll,ll>> item;
-  item.pb(make_pair(0,0));
-  rep(i,0,n){
-    ll x,y;
-    cin >> x >> y;
-    item.pb(make_pair(x,y));
-  }
-
+  vll W(n),V(n);
+  rep(i,0,n) cin >> W[i] >> V[i];
   vvll dp(n+1,vll(w+1,0));
 
-  rep(i,1,n+1){
+  rep(i,0,n){
     rep(j,0,w+1){
-      dp[i][j] = dp[i-1][j];
-      if(j >= item[i].first){
-        chmax(dp[i][j],dp[i-1][j-item[i].first] + item[i].second);
+      dp[i+1][j] = dp[i][j];
+      if(j >= W[i]){
+        chmax(dp[i+1][j],dp[i][j-W[i]] + V[i]);
       }
     }
   }
-
   ll res = 0;
-  rep(i,1,w+1){
-    chmax(res, dp[n][i]);
-  }
+  // repa(x,dp){
+  //   repa(y,x) cout << y << " ";
+  //   cout << endl;
+  // }
+  rep(i,0,w+1) chmax(res,dp[n][i]);
+
   cout << res << endl;
-  return 0;
 }

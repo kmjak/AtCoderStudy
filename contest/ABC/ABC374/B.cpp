@@ -8,6 +8,7 @@
 #define rall(x) x.rbegin(), x.rend()
 #define pb push_back
 #define eb emplace_back
+
 #define ll long long int
 #define vi vector<int>
 #define vll vector<ll>
@@ -16,6 +17,7 @@
 #define vs vector<string>
 
 using namespace std;
+
 
 template<typename T> inline bool chmin(T &a, T b) {
   if (a > b) {
@@ -34,54 +36,28 @@ template<typename T> inline bool chmax(T &a, T b) {
 }
 
 
-// int main()
-// {
-//   int n;
-//   cin >> n;
-//   vvi dp(n+1, vi(3, INT_MIN));
-
-//   rep(i,0,3){
-//     dp[0][i] = 0;
-//   }
-
-//   rep(i,0,n){
-//     vi d(3);
-//     cin >> d[0] >> d[1] >> d[2];
-//     rep(j,0,3){
-//       rep(k,0,3){
-//         if(j != k) chmax(dp[i+1][j], dp[i][k] + d[k]);
-//       }
-//     }
-//   }
-
-//   int res = 0;
-//   rep(i,0,3) chmax(res,dp[n][i]);
-
-//   cout << res << endl;
-//   return 0;
-// }
-
-
-// 復習
 int main()
 {
-  int n;
-  cin >> n;
-  vvi dp(n+1,vi(3,0));
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  cout.tie(0);
 
+  string s,t;
+  cin >> s >> t;
+
+  if(s == t){
+    cout << 0 << endl;
+    return 0;
+  }
+
+  int n = min(s.size(), t.size());
   rep(i,0,n){
-    rep(j,0,3){
-      int x;
-      cin >> x;
-      rep(k,0,3){
-        if(j != k){
-          chmax(dp[i+1][j],dp[i][k] + x);
-        }
-      }
+    if(s[i] != t[i]){
+      cout << i+1 << endl;
+      return 0;
     }
   }
-  int res = 0;
-  rep(i,0,3) chmax(res,dp[n][i]);
+  cout << n+1 << endl;
 
-  cout << res << endl;
+  return 0;
 }
