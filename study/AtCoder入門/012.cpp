@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 #define rep(i,s,n) for(auto i = s; i < n; i++)
-#define rrep(i,s,n) for(auto i = s; i > n; i--)
+#define rrep(i,s,n) for(auto i = s; i >= n; i--)
 #define repa(i, x) for(auto i : x)
 #define rrepa(i, x) for(auto i = x.rbegin(); i != x.rend(); ++i)
 
@@ -47,5 +47,14 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int n;
+  cin >> n;
+  set<int> d;
+  rep(i,0,n){
+    int x;
+    cin >> x;
+    d.insert(x);
+  }
+  cout << d.size() << endl;
   return 0;
 }
