@@ -39,8 +39,8 @@ int main() {
     auto it_l = lower_bound(v.begin(), v.end(), make_pair(l, 0));
     auto it_r = upper_bound(v.begin(), v.end(), make_pair(r, INT_MAX));
 
-    int idx_l = it_l - v.begin();
-    int idx_r = it_r - v.begin() - 1;
+    int idx_l = std::distance(v.begin(), it_l);
+    int idx_r = std::distance(v.begin(), it_r) - 1;
 
     long long result = 0;
     if (idx_l <= idx_r && idx_l < n) {
