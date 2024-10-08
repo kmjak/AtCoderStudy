@@ -47,5 +47,27 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N;
+  cin >> N;
+  pi current = {0,0};
+  int now = 0;
+  rep(i,0,N){
+    int T,X,Y;
+    cin >> T >> X >>Y;
+    int possible = T - now;
+    int move = abs(X - current.first) + abs(Y - current.second);
+    if(possible < move){
+      cout << "No" << endl;
+      return 0;
+    }
+    if(possible % 2 != move % 2){
+      cout << "No" << endl;
+      return 0;
+    }
+    current.first = X;
+    current.second = Y;
+    now = T;
+  }
+  cout << "Yes" << endl;
   return 0;
 }
