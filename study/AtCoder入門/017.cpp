@@ -47,5 +47,12 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  ll A,B,C,K;
+  cin >> A >> B >> C >> K;
+  if(K % 2 == 1){
+    cout << B - A << endl;
+  }else{
+    cout << A - B << endl;
+  }
   return 0;
 }
