@@ -41,28 +41,30 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
+ll hamburger(int N, ll X,const vll &L, const vll &S){
+  if(N==0) return 1;
+
+  if(X==1)return 0;
+  else if(X<=L[N-1] + 1) return hamburger(N-1,X-1,L,S);
+  else if(X == L[N-1] + 2) return S[N-1] + 1;
+  else if(X <= L[N-1] * 2 + 2) return hamburger(N-1,X-L[N-1]-2,L,S) + S[N-1] + 1;
+  else return S[N-1] * 2 + 1;
+}
 
 int main()
 {
+  // 4割ほど理解できた
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  ll N;
-  cin >> N;
-  vi A(N);
-  rep(i,0,N) cin >> A[i];
-
-  ll res = N;
-  ll prev = 0;
-  rep(i,1,N-1){
-    if(abs(A[i] - A[i-1]) != abs(A[i+1] - A[i])){
-      res += ((i - prev) * (i - prev + 1)) / 2;
-      prev = i;
-    }
+  ll N,X;
+  cin >> N >> X;
+  vll L(N+1,1), S(N+1,1);
+  rep(i,1,N+1){
+    L[i] = L[i-1] * 2 + 3;
+    S[i] = S[i-1] * 2 + 1;
   }
-  res += ((N - 1 - prev) * (N - prev)) / 2;
 
-  cout << res << endl;
+  cout << hamburger(N,X,L,S) << endl;
   return 0;
 }
-
