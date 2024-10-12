@@ -14,16 +14,16 @@
 
 using namespace std;
 
-using ll=long long int;
-using pi=pair<int,int>;
+using ll = long long int;
+using pi = pair<int, int>;
 
-using vi=vector<int>;
-using vll=vector<ll>;
-using vs=vector<string>;
-using vc=vector<char>;
+using vi = vector<int>;
+using vll = vector<ll>;
+using vs = vector<string>;
+using vc = vector<char>;
 
-using vvi=vector<vi>;
-using vvll=vector<vll>;
+using vvi = vector<vi>;
+using vvll = vector<vll>;
 
 template<typename T> inline bool chmin(T &a, T b) {
   if (a > b) {
@@ -41,31 +41,27 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
+double dist(pi a, pi b) {
+  return sqrt(pow(a.first - b.first, 2) + pow(a.second - b.second, 2));
+}
 
-int main()
-{
+int main() {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  string S,T;
-  cin >> S >> T;
-  vc tmp;
-  repa(x,S){
-    if(x == tolower(T[0]) || x == tolower(T[1]) || x == tolower(T[2])) tmp.pb(toupper(x));
+
+  int N;
+  cin >> N;
+  pi current = mp(0, 0);
+  double costs = 0;
+  rep(i, 0, N) {
+    int x, y;
+    cin >> x >> y;
+    costs += dist(current, mp(x, y));
+    current = mp(x, y);
   }
-  int C = tmp.size();
-  int prev = 0;
-  if(T.back() == 'X') T = T.substr(0,2);
-  int T_size = T.size();
-  int i = 0;
-  int j = 0;
-  while(i != C){
-    if(tmp[i] == T[j]){
-      j++;
-    }
-    i++;
-  }
-  if(j == T_size) cout << "Yes" << endl;
-  else cout << "No" << endl;
+  costs += dist(current, mp(0, 0));
+
+  cout << defaultfloat << setprecision(numeric_limits<double>::max_digits10) << costs << endl;
   return 0;
 }

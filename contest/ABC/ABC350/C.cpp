@@ -47,25 +47,27 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  string S,T;
-  cin >> S >> T;
-  vc tmp;
-  repa(x,S){
-    if(x == tolower(T[0]) || x == tolower(T[1]) || x == tolower(T[2])) tmp.pb(toupper(x));
+  int N;
+  cin >> N;
+  vi A(N);
+  rep(i,0,N){
+    cin >> A[i];
   }
-  int C = tmp.size();
-  int prev = 0;
-  if(T.back() == 'X') T = T.substr(0,2);
-  int T_size = T.size();
-  int i = 0;
-  int j = 0;
-  while(i != C){
-    if(tmp[i] == T[j]){
-      j++;
+
+  vector<pi> k;
+  rep(i,0,N-1){
+    if(A[i] != i+1){
+      rep(j,i+1,N){
+        if(i+1 == A[j]){
+          k.pb(mp(A[i],A[j]));
+          swap(A[i],A[j]);
+        }
+      }
     }
-    i++;
   }
-  if(j == T_size) cout << "Yes" << endl;
-  else cout << "No" << endl;
+  cout << k.size() << endl;
+  repa(x,k){
+    cout << min(x.first,x.second) << " " << max(x.first,x.second) << endl;
+  }
   return 0;
 }
