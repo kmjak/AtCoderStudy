@@ -47,47 +47,29 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  int N,MG;
-  cin >> N >> MG;
-  vvi G(N),H(G);
-  rep(i,0,MG){
-    int u,v;
-    cin >> u >> v;
-    u--;
-    v--;
-    G[u].pb(v);
-    G[v].pb(u);
-  }
-  int MH;
-  cin >> MH;
-  rep(i,0,MH){
-    int u,v;
-    cin >> u >> v;
-    u--;
-    v--;
-    H[u].pb(v);
-    H[v].pb(u);
-  }
-  vvi A(N);
-  rep(i,0,N-1){
-    rep(j,i+1,N){
-      int x;
-      cin >> x;
-      A[i].pb(x);
-      A[x].pb(i);
+  string S;
+  cin >> S;
+
+  int N = S.size();
+
+  vector<bool> dp(N+1,false);
+  dp[0] = true;
+  rep(i,1,N+1){
+    if(i >= 5 && dp[i-5] && S.substr(i-5,5) == "erase"){
+      dp[i] = true;
+    }
+    if(i >= 6 && dp[i-6] && S.substr(i-6,6) == "eraser"){
+      dp[i] = true;
+    }
+    if(i >= 5 && dp[i-5] && S.substr(i-5,5) == "dream"){
+      dp[i] = true;
+    }
+    if(i >= 7 && dp[i-7] && S.substr(i-7,7) == "dreamer"){
+      dp[i] = true;
     }
   }
-  int res = INT_MAX;
 
-  vi pattern(N);
-  rep(i,0,N) pattern[i] = i;
-
-  do
-  {
-    rep(i,0,N){
-    }
-  } while (next_permutation(all(pattern)));
-  
-  cout << res << endl;
+  if(dp[N]) cout << "YES" << endl;
+  else cout << "NO" << endl;
   return 0;
 }

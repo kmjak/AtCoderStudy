@@ -41,53 +41,55 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
+int N, M,Q;
+vll a,b,c,d;
+
+ll calc_score(const vi& A)
+{
+  ll score = 0;
+  rep(q,0,Q){
+    if(A[b[q]] - A[a[q]] == c[q]) score += d[q];
+  }
+  return score;
+}
+
+ll rec(vi& A){
+  if(A.size() == N)return calc_score(A);
+
+  ll res = 0;
+
+  int prev_last = (A.empty() ? 1 : A.back());
+
+  rep(add,prev_last,M+1){
+    A.pb(add);
+
+    chmax(res,rec(A));
+
+    A.pop_back();
+  }
+  return res;
+}
 
 int main()
 {
+  // 問題の意味すらわからなかった
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  int N,MG;
-  cin >> N >> MG;
-  vvi G(N),H(G);
-  rep(i,0,MG){
-    int u,v;
-    cin >> u >> v;
-    u--;
-    v--;
-    G[u].pb(v);
-    G[v].pb(u);
-  }
-  int MH;
-  cin >> MH;
-  rep(i,0,MH){
-    int u,v;
-    cin >> u >> v;
-    u--;
-    v--;
-    H[u].pb(v);
-    H[v].pb(u);
-  }
-  vvi A(N);
-  rep(i,0,N-1){
-    rep(j,i+1,N){
-      int x;
-      cin >> x;
-      A[i].pb(x);
-      A[x].pb(i);
-    }
-  }
-  int res = INT_MAX;
+  cin >> N >> M >> Q;
+  a.resize(Q);
+  b.resize(Q);
+  c.resize(Q);
+  d.resize(Q);
 
-  vi pattern(N);
-  rep(i,0,N) pattern[i] = i;
+  rep(i,0,Q){
+    cin >> a[i] >> b[i] >> c[i] >> d[i];
+    a[i]--;
+    b[i]--;
+  }
 
-  do
-  {
-    rep(i,0,N){
-    }
-  } while (next_permutation(all(pattern)));
-  
-  cout << res << endl;
+  vi A;
+  cout << rec(A) << endl;
+
   return 0;
 }
