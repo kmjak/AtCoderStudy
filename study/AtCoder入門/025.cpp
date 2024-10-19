@@ -47,5 +47,26 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  ll N,x;
+  cin >> N >> x;
+  vll A(N);
+  ll cnt = 0;
+  rep(i,0,N){
+    cin >> A[i];
+  }
+
+  if(A[0] > x){
+    cnt = A[0] - x;
+    A[0] = x;
+  }
+
+  rep(i,0,N-1){
+    if(A[i] + A[i+1] > x){
+      cnt += A[i] + A[i + 1] - x;
+      A[i+1] = x - A[i];
+    }
+  }
+
+  cout << cnt << endl;
   return 0;
 }

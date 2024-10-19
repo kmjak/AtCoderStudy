@@ -1,0 +1,1 @@
+find . -name "template.cpp" -exec cp ./template.cpp {} \;

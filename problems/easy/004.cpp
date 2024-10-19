@@ -11,11 +11,19 @@
 #define mp make_pair
 #define pb push_back
 #define eb emplace_back
+#define mt make_tuple
+#define g(i,t) get<i>(t)
+#define fi first
+#define se second
+
+#define NO cout << "No" << endl;
+#define YES cout << "Yes" << endl;
 
 using namespace std;
 
 using ll=long long int;
 using pi=pair<int,int>;
+using qi=queue<int>;
 
 using vi=vector<int>;
 using vll=vector<ll>;
@@ -47,28 +55,15 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  int N,Q;
-  cin >> N >> Q;
-  pi current = {0,1};
-  int score = 0;
-  rep(i,0,Q){
-    char c;
-    int t;
-    cin >> c >> t;
-    t--;
-    if(c == 'L'){
-      int tmp1 = abs(current.first - t);
-      int tmp2 =  N - abs(current.second - t);
-      pi next1 = {t,current.second};
-      pi next2 = {t,current.second};
-      if(min(current.first,t) < current.second &&  max(current.first,t) > current.second){
-        tmp1++;
-      }else{
-        tmp2++;
-      }
-
+  int N;
+  cin >> N;
+  rep(i,1,N+1){
+    int tmp = i * 1.08;
+    if(tmp == N){
+      cout << i << endl;
+      return 0;
     }
   }
-  cout << score << endl;
+  cout << ":(" << endl;
   return 0;
 }

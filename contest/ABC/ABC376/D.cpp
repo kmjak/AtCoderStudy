@@ -41,20 +41,62 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
-int bfs(vvi &G, int n){
-  vi dist(n,-1);
-  queue<pi> q;
-  q.push(mp(0,-1));
-  dist[0] = 1;
+// int bfs(vvi &G, int n){
+//   vi dist(n,-1);
+//   queue<pi> q;
+//   q.push(mp(0,-1));
+//   dist[0] = 1;
+//   while(!q.empty()){
+//     auto [v,p] = q.front();
+//     q.pop();
+//     repa(u,G[v]){
+//       if(u == 0){
+//         return dist[v] + 1;
+//       }
+//       dist[u] = v;
+//       q.push(mp(u,v));
+//     }
+//   }
+//   return -1;
+// }
+
+// int main()
+// {
+//   ios_base::sync_with_stdio(0);
+//   cin.tie(0);
+//   cout.tie(0);
+//   int N,M;
+//   cin >> N >> M;
+//   vvi G(N);
+//   rep(i,0,M){
+//     int a,b;
+//     cin >> a >> b;
+//     a--;
+//     b--;
+//     G[a].pb(b);
+//   }
+//   cout << bfs(G,N) << endl;
+//   return 0;
+// }
+
+int bfs(vvi &G,int N){
+  vi dist(N+1,INT_MAX);
+  dist[0] = 0;
+  queue<int> q;
+  q.push(0);
+
   while(!q.empty()){
-    auto [v,p] = q.front();
+    int v = q.front();
     q.pop();
-    repa(u,G[v]){
-      if(u == 0){
+
+    repa(x,G[v]){
+      if(x == 0){
         return dist[v] + 1;
       }
-      dist[u] = v;
-      q.push(mp(u,v));
+      if(dist[x] == INT_MAX){
+        dist[x] = dist[v] + 1;
+        q.push(x);
+      }
     }
   }
   return -1;
