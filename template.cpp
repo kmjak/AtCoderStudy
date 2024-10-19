@@ -11,11 +11,16 @@
 #define mp make_pair
 #define pb push_back
 #define eb emplace_back
+#define mt make_tuple
+#define g(i,t) get<i>(t)
+#define fi first
+#define se second
 
 using namespace std;
 
 using ll=long long int;
 using pi=pair<int,int>;
+using qi=queue<int>;
 
 using vi=vector<int>;
 using vll=vector<ll>;
