@@ -16,6 +16,9 @@
 #define fi first
 #define se second
 
+#define NO cout << "No" << endl;
+#define YES cout << "Yes" << endl;
+
 using namespace std;
 
 using ll=long long int;
