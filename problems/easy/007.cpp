@@ -16,9 +16,6 @@
 #define fi first
 #define se second
 
-#define tos(n) to_string(n)
-#define toi(s) stoi(s)
-
 #define NO cout << "No" << endl;
 #define YES cout << "Yes" << endl;
 
@@ -58,5 +55,58 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  vector<vector<pair<int,bool>>> A(3, vector<pair<int,bool>>(3));
+  rep(i,0,3) {
+    rep(j,0,3) {
+      int tmp;
+      cin >> tmp;
+      A[i][j] = mp(tmp,false);
+    }
+  }
+  int N;
+  cin >> N;
+  rep(i,0,N) {
+    int b;
+    cin >> b;
+    rep(j,0,3) {
+      rep(k,0,3) {
+        if(A[j][k].fi == b) A[j][k].se = true;
+      }
+    }
+  }
+
+  bool t = true;
+  bool y = true;
+  bool l = true;
+  bool r = true;
+  rep(i,0,3) {
+    t = true;
+    y = true;
+    rep(j,0,3) {
+      if(!A[i][j].se){
+        t = false;
+      }
+      if(!A[j][i].se){
+        y = false;
+      }
+    }
+    if(t || y){
+      YES;
+      return 0;
+    }
+  }
+  rep(i,0,3) {
+    if(!A[i][i].se){
+      l = false;
+    }
+    if(!A[2-i][i].se){
+      r = false;
+    }
+  }
+  if(r || l){
+    YES;
+  }else{
+    NO;
+  }
   return 0;
 }

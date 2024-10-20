@@ -16,9 +16,6 @@
 #define fi first
 #define se second
 
-#define tos(n) to_string(n)
-#define toi(s) stoi(s)
-
 #define NO cout << "No" << endl;
 #define YES cout << "Yes" << endl;
 
@@ -58,5 +55,13 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  ll H,W;
+  cin >> H >> W;
+  if(H == 1 || W == 1){
+    cout << 1 << '\n';
+    return 0;
+  }
+  ll res = (H * W + 1) / 2;
+  cout << res << '\n';
   return 0;
 }

@@ -16,6 +16,9 @@
 #define fi first
 #define se second
 
+#define tos(n) to_string(n)
+#define toi(s) stoi(s)
+
 #define NO cout << "No" << endl;
 #define YES cout << "Yes" << endl;
 

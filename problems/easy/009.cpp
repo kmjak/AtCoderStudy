@@ -16,9 +16,6 @@
 #define fi first
 #define se second
 
-#define tos(n) to_string(n)
-#define toi(s) stoi(s)
-
 #define NO cout << "No" << endl;
 #define YES cout << "Yes" << endl;
 
@@ -58,5 +55,14 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N,K;
+  cin >> N >> K;
+  int res = 0;
+  rep(i,0,N) {
+    int x;
+    cin >> x;
+    res += min(x,K-x);
+  }
+  cout << res * 2 << '\n';
   return 0;
 }

@@ -58,5 +58,19 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  return 0;
+  ll N,K;
+  cin >> N >> K;
+  vector<bool> used(K + 1, false);
+  ll res = K * (K + 1) / 2;
+
+  rep(i, 0, N) {
+    ll x;
+    cin >> x;
+    if (x <= K && !used[x]) {
+      used[x] = true;
+      res -= x;
+    }
+  }
+
+  cout << res << '\n';
 }

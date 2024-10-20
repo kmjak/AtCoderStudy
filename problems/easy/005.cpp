@@ -16,9 +16,6 @@
 #define fi first
 #define se second
 
-#define tos(n) to_string(n)
-#define toi(s) stoi(s)
-
 #define NO cout << "No" << endl;
 #define YES cout << "Yes" << endl;
 
@@ -58,5 +55,25 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N,M,C;
+  int c = 0;
+  cin >> N >> M >> C;
+  vi B(M);
+  rep(i,0,M) {
+    cin >> B[i];
+  }
+  rep(i,0,N) {
+    int sum = 0;
+    rep(j,0,M) {
+      int a;
+      cin >> a;
+      sum += a * B[j];
+    }
+    // cout << sum << '\n';
+    if(sum+C > 0){
+      c++;
+    }
+  }
+  cout << c << '\n';
   return 0;
 }
