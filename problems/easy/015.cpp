@@ -60,5 +60,11 @@ int main()
   cout.tie(0);
   int N;
   cin >> N;
+  vi D(N);
+  rep(i,0,N) {
+    cin >> D[i];
+  }
+  sort(all(D));
+  cout << D[N/2] - D[N/2-1] << '\n';
   return 0;
 }
