@@ -13,14 +13,15 @@
 #define eb emplace_back
 #define mt make_tuple
 #define g(i,t) get<i>(t)
-#define fi first
-#define se second
 
 #define tos(n) to_string(n)
 #define toi(s) stoi(s)
 
 #define NO cout << "No" << endl;
 #define YES cout << "Yes" << endl;
+
+#define vcin(N,A) rep(i,0,N) cin >> A[i];
+#define vcout(X) repa(x,X) cout << x << ' ';
 
 using namespace std;
 
