@@ -83,11 +83,9 @@ int main()
     }
     if(fp){
       p_i = j;
-      cout << "p : " << p_i << '\n';
     }
     if(fq){
       q_i = j;
-      cout << "q : " << q_i << '\n';
     }
     if(p_i && q_i) break;
     j++;
