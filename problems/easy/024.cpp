@@ -9,22 +9,20 @@
 #define rall(x) x.rbegin(), x.rend()
 
 #define mp make_pair
-#define mt make_tuple
 #define pb push_back
 #define eb emplace_back
+#define mt make_tuple
 #define g(i,t) get<i>(t)
+#define fi first
+#define se second
 
 #define tos(n) to_string(n)
 #define toi(s) stoi(s)
 
-#define NO cout << "No" << endl
-#define YES cout << "Yes" << endl
+#define NO cout << "No" << endl;
+#define YES cout << "Yes" << endl;
 
-#define vcin(N,A) rep(i,0,N) cin >> A[i]
-#define vcout(X) rep(i, 0, X.size()) cout << X[i] << (i == X.size() - 1 ? '\n' : ' ');
-
-#define sort(x) sort(all(x))
-#define rsort(x) sort(rall(x))
+#define vcin(N,A) rep(i,0,N) cin >> A[i];
 
 using namespace std;
 
@@ -62,5 +60,31 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  ll A,B,M;
+  cin >> A >> B >> M;
+  vll a(A),b(B);
+  vcin(A,a);
+  vcin(B,b);
+  int res = *min_element(all(a)) + *min_element(all(b));
+  rep(i,0,M) {
+    int x,y,c;
+    cin >> x >> y >> c;
+    int tmp = a[x-1] + b[y-1] - c;
+    chmin(res, tmp);
+  }
+  // int res = INT_MAX;
+  // rep(i,0,A) {
+  //   rep(j,0,B) {
+  //     chmin(res,a[i] + b[j]);
+  //   }
+  // }
+  // rep(i,0,M) {
+  //   int x,y,c;
+  //   cin >> x >> y >> c;
+  //   int tmp = a[x-1] + b[y-1] - c;
+  //   chmin(res,tmp);
+  // }
+
+  cout << res << '\n';
   return 0;
 }

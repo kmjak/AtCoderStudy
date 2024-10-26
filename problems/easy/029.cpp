@@ -62,5 +62,14 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  string S;
+  cin >> S;
+  int S_len = S.size();
+  int diff = INT_MAX;
+  rep(i,0,S_len-2) {
+    int tmp = toi(S.substr(i,3));
+    chmin(diff,abs(tmp-753));
+  }
+  cout << diff << '\n';
   return 0;
 }

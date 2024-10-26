@@ -9,22 +9,19 @@
 #define rall(x) x.rbegin(), x.rend()
 
 #define mp make_pair
-#define mt make_tuple
 #define pb push_back
 #define eb emplace_back
+#define mt make_tuple
 #define g(i,t) get<i>(t)
 
 #define tos(n) to_string(n)
 #define toi(s) stoi(s)
 
-#define NO cout << "No" << endl
-#define YES cout << "Yes" << endl
+#define NO cout << "No" << endl;
+#define YES cout << "Yes" << endl;
 
-#define vcin(N,A) rep(i,0,N) cin >> A[i]
-#define vcout(X) rep(i, 0, X.size()) cout << X[i] << (i == X.size() - 1 ? '\n' : ' ');
-
-#define sort(x) sort(all(x))
-#define rsort(x) sort(rall(x))
+#define vcin(N,A) rep(i,0,N) cin >> A[i];
+#define vcout(X) repa(x,X) cout << x << ' ';
 
 using namespace std;
 
@@ -56,11 +53,29 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
+vi dx = {2,1,2,1,-2,-1,-2,-1};
+vi dy = {1,2,-1,-2,1,2,-1,-2};
 
 int main()
 {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  ll N,M;
+  cin >> N >> M;
+  set<pi> impossible;
+  rep(i,0,M){
+    ll x,y;
+    cin >> x >> y;
+    x--; y--;
+    impossible.insert(mp(x,y));
+    rep(j,0,8){
+      ll nx = x + dx[j];
+      ll ny = y + dy[j];
+      if (nx < 0 || nx >= N || ny < 0 || ny >= N) continue;
+      impossible.insert(mp(nx,ny));
+    }
+  }
+  cout << N * N - impossible.size() << '\n';
   return 0;
 }

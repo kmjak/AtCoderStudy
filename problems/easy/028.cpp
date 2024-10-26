@@ -62,5 +62,17 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N;
+  cin >> N;
+  vi A(N);
+  vcin(N,A);
+  rep(i,0,100) {
+    repa(x,A){
+      if(1&(x>>i)){
+        cout << i << '\n';
+        return 0;
+      }
+    }
+  }
   return 0;
 }

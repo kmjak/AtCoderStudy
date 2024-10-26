@@ -62,5 +62,23 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int x1,y1,x2,y2;
+  cin >> x1 >> y1 >> x2 >> y2;
+  int dx = x2 - x1;
+  int dy = y2 - y1;
+  int x = x2;
+  int y = y2;
+  rep(i,0,2) {
+    int _dx = -dy;
+    int _dy = dx;
+    dx = _dx;
+    dy = _dy;
+
+    x = x + dx;
+    y = y + dy;
+    cout << x << " " << y;
+    if(i == 0) cout << ' ';
+    else cout << '\n';
+  }
   return 0;
 }

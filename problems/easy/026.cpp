@@ -56,11 +56,23 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
+ll f(const ll& H, int t)
+{
+  if (H == 1) {
+    return 1;
+  } else {
+    return pow(2, t) + f(H / 2, t + 1);
+  }
+}
+
 
 int main()
 {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  ll H;
+  cin >> H;
+  cout << f(H,1) << '\n';
   return 0;
 }

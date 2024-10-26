@@ -9,22 +9,19 @@
 #define rall(x) x.rbegin(), x.rend()
 
 #define mp make_pair
-#define mt make_tuple
 #define pb push_back
 #define eb emplace_back
+#define mt make_tuple
 #define g(i,t) get<i>(t)
 
 #define tos(n) to_string(n)
 #define toi(s) stoi(s)
 
-#define NO cout << "No" << endl
-#define YES cout << "Yes" << endl
+#define NO cout << "No" << endl;
+#define YES cout << "Yes" << endl;
 
-#define vcin(N,A) rep(i,0,N) cin >> A[i]
-#define vcout(X) rep(i, 0, X.size()) cout << X[i] << (i == X.size() - 1 ? '\n' : ' ');
-
-#define sort(x) sort(all(x))
-#define rsort(x) sort(rall(x))
+#define vcin(N,A) rep(i,0,N) cin >> A[i];
+#define vcout(X) repa(x,X) cout << x << ' ';
 
 using namespace std;
 
@@ -62,5 +59,28 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  vs field(8);
+  vector<vector<bool>> possible(8, vector<bool>(8, true));
+  rep(i,0,8) {
+    cin >> field[i];
+    rep(j,0,8) {
+      if (field[i][j] == '#') {
+        possible[i][j] = false;
+        rep(k,0,8) {
+          possible[i][k] = false;
+          possible[k][j] = false;
+        }
+      }
+    }
+  }
+  int cnt = 0;
+  rep(i,0,8) {
+    rep(j,0,8) {
+      if (possible[i][j]) {
+        cnt++;
+      }
+    }
+  }
+  cout << cnt << '\n';
   return 0;
 }

@@ -62,5 +62,14 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  ll N,A,B;
+  cin >> N >> A >> B;
+  ll C = N / (A+B);
+  ll line = N % (A+B);
+  if(line >= A){
+    cout << A*(C+1) << '\n';
+  }else{
+    cout << A*C+line << '\n';
+  }
   return 0;
 }

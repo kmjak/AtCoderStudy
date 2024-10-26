@@ -9,22 +9,18 @@
 #define rall(x) x.rbegin(), x.rend()
 
 #define mp make_pair
-#define mt make_tuple
 #define pb push_back
 #define eb emplace_back
+#define mt make_tuple
 #define g(i,t) get<i>(t)
+#define fi first
+#define se second
 
 #define tos(n) to_string(n)
 #define toi(s) stoi(s)
 
-#define NO cout << "No" << endl
-#define YES cout << "Yes" << endl
-
-#define vcin(N,A) rep(i,0,N) cin >> A[i]
-#define vcout(X) rep(i, 0, X.size()) cout << X[i] << (i == X.size() - 1 ? '\n' : ' ');
-
-#define sort(x) sort(all(x))
-#define rsort(x) sort(rall(x))
+#define NO cout << "No" << endl;
+#define YES cout << "Yes" << endl;
 
 using namespace std;
 
@@ -55,12 +51,45 @@ template<typename T> inline bool chmax(T &a, T b) {
   }
   return false;
 }
+vll prime;
 
+bool isPrime(ll n)
+{
+  repa(x,prime){
+    if(n%x==0){
+      return false;
+    }
+  }
+  return true;
+}
 
 int main()
 {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  ll N;
+  cin >> N;
+  ll num = 6;
+  if(N != 2) prime.pb(2);
+  if(N > 3)prime.pb(3);
+  while(num < N){
+    if(isPrime(num-1)){
+      prime.pb(num-1);
+    }
+    if(isPrime(num+1) && num+1 != N){
+      prime.pb(num+1);
+    }
+    num += 6;
+  }
+  ll res = N;
+  while(true){
+    if(isPrime(res)){
+      break;
+    }
+    if(res%2==0) res++;
+    else res += 2;
+  }
+  cout << res << '\n';
   return 0;
 }
