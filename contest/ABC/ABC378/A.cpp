@@ -61,16 +61,17 @@ int main() {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  vi A(4);
-  vcin(4, A);
-  map<int, int> c;
-  rep(i, 0, 4) c[A[i]]++;
-
-  int pairs = 0;
-  for (auto [color, count] : c) {
-    pairs += count / 2;
+  set<int> S;
+  int res = 0;
+  rep(i,0,4) {
+    int a;
+    cin >> a;
+    if(count(all(S), a) == 0) S.insert(a);
+    else {
+      S.erase(a);
+      res++;
+    }
   }
-
-  cout << pairs << '\n';
+  cout << res << '\n';
   return 0;
 }
