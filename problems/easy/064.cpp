@@ -57,21 +57,19 @@ template<typename T> inline bool chmax(T &a, T b) {
 }
 
 
-int main() {
+int main()
+{
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  set<int> S;
-  int res = 0;
-  rep(i,0,4) {
-    int a;
-    cin >> a;
-    if(count(all(S), a) == 0) S.insert(a);
-    else {
-      S.erase(a);
-      res++;
-    }
+  string O,E;
+  cin >> O >> E;
+  rep(i,0,E.size()) {
+    cout << O[i] <<  E[i];
   }
-  cout << res << '\n';
+  if(O.size() != E.size()){
+    cout << O.back();
+  }
+  cout << '\n';
   return 0;
 }
