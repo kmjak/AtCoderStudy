@@ -23,12 +23,14 @@
 #define vcin(N,A) rep(i,0,N) cin >> A[i]
 #define vcout(X) rep(i, 0, X.size()) cout << X[i] << (i == X.size() - 1 ? '\n' : ' ');
 
+#define sort(x) sort(all(x))
+#define rsort(x) sort(rall(x))
+
 using namespace std;
 
 using ll=long long int;
 using pi=pair<int,int>;
 using qi=queue<int>;
-using si=set<int>;
 
 using vi=vector<int>;
 using vll=vector<ll>;
@@ -60,5 +62,29 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N;
+  cin >> N;
+  map<string, int> Strs;
+  int MAX = 0;
+  rep(i,0,N) {
+    string tmp;
+    cin >> tmp;
+    if(Strs.find(tmp) != Strs.end()){
+      Strs[tmp]++;
+    }else{
+      Strs.insert(mp(tmp,1));
+    }
+    chmax(MAX,Strs[tmp]);
+  }
+  vs res;
+  repa(x,Strs){
+    if(x.second == MAX){
+      res.eb(x.first);
+    }
+  }
+  sort(res);
+  repa(x,res){
+    cout << x << '\n';
+  }
   return 0;
 }

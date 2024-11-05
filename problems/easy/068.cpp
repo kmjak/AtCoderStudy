@@ -28,7 +28,6 @@ using namespace std;
 using ll=long long int;
 using pi=pair<int,int>;
 using qi=queue<int>;
-using si=set<int>;
 
 using vi=vector<int>;
 using vll=vector<ll>;
@@ -60,5 +59,20 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N;
+  cin >> N;
+  map<string,vector<pair<int,int>>> Scores;
+  rep(i,0,N) {
+    string tmp;
+    int score;
+    cin >> tmp >> score;
+    Scores[tmp].eb(mp(score,i+1));
+  }
+  repa(x,Scores){
+    sort(rall(x.second));
+    repa(y,x.second){
+      cout << y.second << '\n';
+    }
+  }
   return 0;
 }

@@ -23,14 +23,12 @@
 #define vcin(N,A) rep(i,0,N) cin >> A[i]
 #define vcout(X) rep(i, 0, X.size()) cout << X[i] << (i == X.size() - 1 ? '\n' : ' ');
 
-#define sort(x) sort(all(x))
-#define rsort(x) sort(rall(x))
-
 using namespace std;
 
 using ll=long long int;
 using pi=pair<int,int>;
 using qi=queue<int>;
+using si=set<int>;
 
 using vi=vector<int>;
 using vll=vector<ll>;
