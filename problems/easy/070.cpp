@@ -67,7 +67,7 @@ int main()
   int a = X % 100;
   a = (a-1) / 5;
   int b = X / 100;
-  if(a <= b){
+  if(a < b){
     cout << 1 << '\n';
   }else{
     cout << 0 << '\n';
