@@ -55,6 +55,61 @@ template<typename T> inline bool chmax(T &a, T b) {
 }
 
 
+// int main()
+// {
+//   ios_base::sync_with_stdio(0);
+//   cin.tie(0);
+//   cout.tie(0);
+//   string S;
+//   cin >> S;
+//   string res = "";
+//   int N = S.size();
+//   int Q;
+//   cin >> Q;
+//   while(Q--){
+//     ll K;
+//     cin >> K;
+//     K--;
+//     ll a = K / N;
+//     K = K % N;
+//     ll b = a / 4;
+//     ll c = a % 4;
+
+//     if(b % 2 == 0){
+//       if(c == 0 || c == 3){
+//         res +=S[K];
+//       }else{
+//         if(isupper(S[K])){
+//           res +=(char)tolower(S[K]);
+//         }else{
+//           res +=(char)toupper(S[K]);
+//         }
+//       }
+//     }else{
+//       if(c == 0 || c == 3){
+//         if(isupper(S[K])){
+//           res +=(char)tolower(S[K]);
+//         }else{
+//           res +=(char)toupper(S[K]);
+//         }
+//       }else{
+//         res +=S[K];
+//       }
+//     }
+//     res += " ";
+//   }
+//   cout << res << '\n';
+//   return 0;
+// }
+
+char flip (char c) {
+  if (isupper(c)) {
+    return tolower(c);
+  } else {
+    return toupper(c);
+  }
+}
+
 int main()
 {
   ios_base::sync_with_stdio(0);
@@ -70,34 +125,17 @@ int main()
     ll K;
     cin >> K;
     K--;
-    ll a = K / N;
-    K = K % N;
-    ll b = a / 4;
-    ll c = a % 4;
-
-    if(b % 2 == 0){
-      if(c == 0 || c == 3){
-        res +=S[K];
-      }else{
-        if(isupper(S[K])){
-          res +=(char)tolower(S[K]);
-        }else{
-          res +=(char)toupper(S[K]);
-        }
-      }
+    ll blk = K / N;
+    ll pt = K % N;
+    if(__builtin_popcountll(blk)%2){
+      cout << flip(S[pt]);
     }else{
-      if(c == 0 || c == 3){
-        if(isupper(S[K])){
-          res +=(char)tolower(S[K]);
-        }else{
-          res +=(char)toupper(S[K]);
-        }
-      }else{
-        res +=S[K];
-      }
+      cout << S[pt];
     }
-    res += " ";
+    if(Q){
+      cout << ' ';
+    }
   }
-  cout << res << '\n';
+  cout << '\n';
   return 0;
 }
