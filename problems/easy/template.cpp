@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 
+#define rt return
+
 #define rep(i,s,n) for(auto i = s; i < n; i++)
 #define rrep(i,s,n) for(auto i = s; i > n; i--)
 #define repa(i, x) for(auto i : x)
@@ -19,6 +21,7 @@
 
 #define NO cout << "No" << endl
 #define YES cout << "Yes" << endl
+#define END cout << '\n'
 
 #define vcin(N,A) rep(i,0,N) cin >> A[i]
 #define vcout(X) rep(i, 0, X.size()) cout << X[i] << (i == X.size() - 1 ? '\n' : ' ');
@@ -28,12 +31,14 @@ using namespace std;
 using ll=long long int;
 using pi=pair<int,int>;
 using qi=queue<int>;
+using qp=queue<pi>;
 using si=set<int>;
 
 using vi=vector<int>;
 using vll=vector<ll>;
 using vs=vector<string>;
 using vc=vector<char>;
+using vb=vector<bool>;
 
 using vvi=vector<vi>;
 using vvll=vector<vll>;
@@ -54,11 +59,10 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
-
 int main()
 {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  return 0;
+  rt 0;
 }

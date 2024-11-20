@@ -64,5 +64,23 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N;
+  ll T;
+  cin >> N >> T;
+  ll nt = 0;
+  ll res = 0;
+  ll pt = 0;
+  rep(i,0,N) {
+    ll t;
+    cin >> t;
+    ll diff = t - pt;
+    if(diff > T){
+      res += T;
+    }else{
+      res += diff;
+    }
+    pt = t;
+  }
+    cout << res + T<< '\n';
   rt 0;
 }

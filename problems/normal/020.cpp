@@ -64,5 +64,18 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N;
+  cin >> N;
+  set<ll> Write;
+  rep(i,0,N) {
+    ll n;
+    cin >> n;
+    if(Write.count(n) == 0){
+      Write.emplace(n);
+    }else{
+      Write.erase(n);
+    }
+  }
+  cout << Write.size() << '\n';
   rt 0;
 }

@@ -64,5 +64,17 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int R,G,B,N;
+  cin >> R >> G >> B >> N;
+  ll res = 0;
+  rep(i,0,3001) {
+    rep(j,0,3001) {
+      if((N - ((i*R) + (j*G))) % B == 0 && N - ((i*R) + (j*G)) > -1){
+        // cout << i << " " << j << '\n';
+        res++;
+      }
+    }
+  }
+  cout << res << '\n';
   rt 0;
 }

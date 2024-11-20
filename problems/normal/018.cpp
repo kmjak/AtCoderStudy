@@ -64,5 +64,32 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  vvi Grid(3,vi(3));
+  rep(i,0,3) {
+    rep(j,0,3) {
+      cin >> Grid[i][j];
+    }
+  }
+
+  rep(i,0,101) {
+    rep(j,0,101) {
+      rep(k,0,101) {
+        bool isTrue = true;
+        rep(l,0,3) {
+          if(Grid[0][l] - i == Grid[1][l] - j && Grid[1][l] - j == Grid[2][l] - k){
+            continue;
+          }
+          isTrue = false;
+          break;
+        }
+        if(isTrue){
+          // cout << i << " " << j << " " << k << '\n';
+          YES;
+          rt 0;
+        }
+      }
+    }
+  }
+  NO;
   rt 0;
 }
