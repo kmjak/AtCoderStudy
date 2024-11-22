@@ -64,27 +64,24 @@ int main()
   cin.tie(0);
   cout.tie(0);
   int N;
-  string S;
-  cin >> N >> S;
-  if(N%2 == 0){
+  string T;
+  cin >> N >> T;
+  rep(i,0,(N+1)/2-2) {
+    if(T[i] != '1'){
+      NO;
+      return 0;
+    }
+  }
+  if(T[N/2] != '/'){
     NO;
     return 0;
   }
 
-  int t = (pow(N,2) + 1) /2 - (N-1);
-  string s_1 = S.substr(0, (N-1)/2-1);
-  string s_2 = S.substr((pow(N,2) + 1)/2, N-1);
-  if(count(all(s_1),'1') != (N-1)/2-1){
-    NO;
-    return 0;
-  }
-  if(S[(N-1)/2] != '/'){
-    NO;
-    return 0;
-  }
-  if(count(all(s_2),'2') != min(0,t)){
-    NO;
-    return 0;
+  rep(i,(pow(N,2) + 1) / 2 - 1, N) {
+    if(T[i] != '2'){
+      NO;
+      return 0;
+    }
   }
   YES;
   return 0;
