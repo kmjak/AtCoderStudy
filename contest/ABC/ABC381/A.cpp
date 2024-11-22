@@ -66,18 +66,21 @@ int main()
   int N;
   string T;
   cin >> N >> T;
-  rep(i,0,(N+1)/2-2) {
+  if(N%2 == 0){
+    NO;
+    return 0;
+  }
+  rep(i,0,(N-1)/2) {
     if(T[i] != '1'){
       NO;
       return 0;
     }
   }
-  if(T[N/2] != '/'){
+  if(T[(N-1)/2] != '/'){
     NO;
     return 0;
   }
-
-  rep(i,(pow(N,2) + 1) / 2 - 1, N) {
+  rep(i,(N+1)/2,N) {
     if(T[i] != '2'){
       NO;
       return 0;

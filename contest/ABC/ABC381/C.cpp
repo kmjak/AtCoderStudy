@@ -58,13 +58,34 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
+int N;
+
+bool isRange(int x)
+{
+  return -1 < x && x < N;
+}
+
 int main()
 {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  int N;
-  string S;
-  cin >> N >> S;
+  string T;
+  cin >> N >> T;
+  int res = 0;
+  rep(i,0,N) {
+    if(T[i] == '/'){
+      int j = 1;
+      while(isRange(i+j) && isRange(i-j)){
+        if(T[i-j] == '1' && T[i+j] == '2'){
+          j++;
+          continue;
+        }
+        break;
+      }
+      chmax(res,j+j-1);
+    }
+  }
+  cout << res << '\n';
   return 0;
 }
