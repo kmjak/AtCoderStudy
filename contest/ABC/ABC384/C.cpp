@@ -1,0 +1,91 @@
+#include <bits/stdc++.h>
+
+#define rep(i,s,n) for(auto i = s; i < n; i++)
+#define rrep(i,s,n) for(auto i = s; i > n; i--)
+#define repa(i, x) for(auto i : x)
+#define rrepa(i, x) for(auto i = x.rbegin(); i != x.rend(); ++i)
+
+#define all(x) x.begin(), x.end()
+#define rall(x) x.rbegin(), x.rend()
+
+#define mp make_pair
+#define mt make_tuple
+#define pb push_back
+#define eb emplace_back
+#define g(i,t) get<i>(t)
+
+#define tos(n) to_string(n)
+#define toc(n) '0' + n
+#define toi(s) stoi(s)
+
+#define NO cout << "No" << endl
+#define YES cout << "Yes" << endl
+#define END cout << '\n'
+
+#define vcin(N,A) rep(i,0,N) cin >> A[i]
+#define vcout(X) rep(i, 0, X.size()) cout << X[i] << (i == X.size() - 1 ? '\n' : ' ');
+
+using namespace std;
+
+using ll=long long int;
+using pi=pair<int,int>;
+using qi=queue<int>;
+using qp=queue<pi>;
+using si=set<int>;
+
+using vi=vector<int>;
+using vll=vector<ll>;
+using vs=vector<string>;
+using vc=vector<char>;
+using vb=vector<bool>;
+
+using vvi=vector<vi>;
+using vvll=vector<vll>;
+
+template<typename T> inline bool chmin(T &a, T b) {
+  if (a > b) {
+    a = b;
+    return true;
+  }
+  return false;
+}
+
+template<typename T> inline bool chmax(T &a, T b) {
+  if (a < b) {
+    a = b;
+    return true;
+  }
+  return false;
+}
+
+int main()
+{
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  cout.tie(0);
+  vi M(5);
+  vcin(5, M);
+  vc Dif = {'A', 'B', 'C', 'D', 'E'};
+  vector<pair<int, string>> res;
+  rep(i,0,1<<5) {
+    int total = 0;
+    string s;
+    rep(j,0,5) {
+      if (i & 1 << j) {
+        total += M[j];
+        s += Dif[j];
+      }
+    }
+    res.eb(mp(total, s));
+  }
+  sort(all(res), [](const pair<int, string>& a, const pair<int, string>& b) {
+    if (a.first == b.first) {
+      return a.second < b.second;
+    }
+    return a.first > b.first;
+  });
+  rep(i,0,31) {
+    cout << res[i].second << '\n';
+  }
+  return 0;
+}
