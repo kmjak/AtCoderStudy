@@ -1,7 +1,5 @@
 #include <bits/stdc++.h>
 
-#define rt return
-
 #define rep(i,s,n) for(auto i = s; i < n; i++)
 #define rrep(i,s,n) for(auto i = s; i > n; i--)
 #define repa(i, x) for(auto i : x)
@@ -17,6 +15,7 @@
 #define g(i,t) get<i>(t)
 
 #define tos(n) to_string(n)
+#define toc(n) '0' + n
 #define toi(s) stoi(s)
 
 #define NO cout << "No" << endl
@@ -59,10 +58,15 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
+struct pnt {
+  ll x;
+  ll y;
+};
+
 int main()
 {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  rt 0;
+  return 0;
 }

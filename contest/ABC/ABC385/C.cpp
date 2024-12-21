@@ -58,15 +58,40 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
-struct pnt {
-  ll x;
-  ll y;
-};
-
 int main()
 {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N;
+  cin >> N;
+  vector<vb> P(3e3, vb(3e3, false));
+  vvi idx(3e3);
+  rep(i,0,N) {
+    int h;
+    cin >> h;
+    h--;
+    P[h][i] = true;
+    idx[h].eb(i);
+  }
+  int res = 1;
+  rep(i,0,3e3){
+    int n = idx[i].size();
+    vi vec = idx[i];
+    rep(k,0,n-1) {
+      rep(l,k+1,n) {
+        int score = 1;
+        int diff = vec[l] - vec[k];
+        while(vec[k] + (diff * score) < 3e3) {
+          if(!(P[i][vec[k] + (diff * score)])){
+            break;
+          }
+          score++;
+        }
+        chmax(res, score);
+      }
+    }
+  }
+  cout << res << '\n';
   return 0;
 }

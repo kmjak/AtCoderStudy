@@ -58,15 +58,26 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
-struct pnt {
-  ll x;
-  ll y;
-};
-
 int main()
 {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  vi N(3);
+  vcin(3, N);
+  if(N[0] == N[1] && N[1] == N[2])
+  {
+    YES;
+    return 0;
+  }
+  do
+  {
+    if(N[0] + N[1] == N[2] || N[0] + N[2] == N[1] || N[1] + N[2] == N[0])
+    {
+      YES;
+      return 0;
+    }
+  }while(next_permutation(all(N)));
+  NO;
   return 0;
 }
