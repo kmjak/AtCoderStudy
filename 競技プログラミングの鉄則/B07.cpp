@@ -68,19 +68,19 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  int N,Q;
-  cin >> N >> Q;
-  vi S(N+1,0);
-  rep(i,0,N){
-    int a;
-    cin >> a;
-    S[i+1] = S[i] + a;
-  }
-  while(Q--){
+  int T,N;
+  cin >> T >> N;
+  vi time(T+1,0);
+  while(N--){
     int l,r;
     cin >> l >> r;
-    cout << S[r] - S[l-1] << '\n';
+    time[l]++;
+    time[r]--;
+  }
+
+  rep(i,0,T) {
+    time[i+1] += time[i];
+    cout << time[i] << '\n';
   }
   return 0;
-
 }

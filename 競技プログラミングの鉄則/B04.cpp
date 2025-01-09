@@ -17,6 +17,7 @@
 #define tos(n) to_string(n)
 #define toc(n) '0' + n
 #define toi(s) stoi(s)
+#define tob(b) static_cast<int>(b.to_ulong())
 
 #define NO cout << "No" << endl
 #define YES cout << "Yes" << endl
@@ -68,19 +69,9 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  int N,Q;
-  cin >> N >> Q;
-  vi S(N+1,0);
-  rep(i,0,N){
-    int a;
-    cin >> a;
-    S[i+1] = S[i] + a;
-  }
-  while(Q--){
-    int l,r;
-    cin >> l >> r;
-    cout << S[r] - S[l-1] << '\n';
-  }
+  bitset<8> b;
+  cin >> b;
+  int res = tob(b);
+  cout << res << '\n';
   return 0;
-
 }

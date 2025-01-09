@@ -68,18 +68,30 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  int N,Q;
-  cin >> N >> Q;
+  int N;
+  cin >> N;
   vi S(N+1,0);
   rep(i,0,N){
     int a;
     cin >> a;
     S[i+1] = S[i] + a;
   }
+  int Q;
+  cin >> Q;
+  // vcout(S);
   while(Q--){
     int l,r;
     cin >> l >> r;
-    cout << S[r] - S[l-1] << '\n';
+    int n = r-l+1;
+    int lose = n - (S[r] - S[l-1]);
+    if(lose > n - lose){
+      cout << "lose" << '\n';
+    }else if(lose < n - lose){
+      cout << "win" << '\n';
+    }else{
+      cout << "draw" << '\n';
+    }
+    // cout << n << "戦" << win << "勝" << n - win << "敗" << '\n';
   }
   return 0;
 

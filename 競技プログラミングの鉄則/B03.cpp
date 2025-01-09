@@ -68,19 +68,20 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  int N,Q;
-  cin >> N >> Q;
-  vi S(N+1,0);
-  rep(i,0,N){
-    int a;
-    cin >> a;
-    S[i+1] = S[i] + a;
+  int N;
+  cin >> N;
+  vi A(N);
+  vcin(N,A);
+  rep(i,0,N) {
+    rep(j,i+1,N) {
+      rep(k,j+1,N) {
+        if(A[i] + A[j] + A[k] == 1000){
+          YES;
+          return 0;
+        }
+      }
+    }
   }
-  while(Q--){
-    int l,r;
-    cin >> l >> r;
-    cout << S[r] - S[l-1] << '\n';
-  }
+  NO;
   return 0;
-
 }
