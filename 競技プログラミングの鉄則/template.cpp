@@ -17,6 +17,7 @@
 #define tos(n) to_string(n)
 #define toc(n) '0' + n
 #define toi(s) stoi(s)
+#define tob(b) static_cast<int>(b.to_ulong())
 
 #define NO cout << "No" << endl
 #define YES cout << "Yes" << endl
