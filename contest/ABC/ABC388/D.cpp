@@ -87,20 +87,16 @@ int main()
   cin >> N;
   vi A(N);
   vcin(N, A);
-  vi cum(N+1, 0);
+  vi C(N), D(N+1);
   rep(i,0,N) {
-    A[i] -= min(A[i],N-i-1);
-    if(A[i] > 0){
-      cum[1]++;
-      cum[1+A[i]]--;
-    }else{
-      int j = i+1;
-      while(A[i] > 0 && j < N) {
-        A[j]++;
-        A[i]--;
-        j++;
-      }
+    if(i!=0){
+			C[i] = C[i - 1] + D[i];
+			A[i] += C[i];
     }
+		int cnt = min(N - i - 1, A[i]);
+		A[i] -= cnt;
+		D[i + 1]++;
+		D[min(N, i + cnt + 1)]--;
   }
   vcout(A);
   return 0;
