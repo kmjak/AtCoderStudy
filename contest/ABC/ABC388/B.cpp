@@ -59,9 +59,9 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
-struct pnt {
-  ll x;
-  ll y;
+struct snake {
+  ll T;
+  ll L;
 };
 
 int main()
@@ -69,5 +69,19 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N,D;
+  cin >> N >> D;
+  snake S[N];
+  rep(i,0,N) {
+    cin >> S[i].T >> S[i].L;
+  }
+  rep(i,1,D+1) {
+    ll MAX = 0;
+    repa(x,S){
+      ll tmp = x.T * (x.L + i);
+      chmax(MAX, tmp);
+    }
+    cout << MAX << '\n';
+  }
   return 0;
 }

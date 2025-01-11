@@ -69,5 +69,30 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N;
+  cin >> N;
+  int MAX =1500;
+  vvi field(MAX+10,vi(MAX+10,0));
+  rep(i,0,N) {
+    int x,y;
+    cin >> x >> y;
+    field[y][x]++;
+  }
+  rep(i,0,MAX+5) {
+    rep(j,0,MAX+5) {
+      field[i][j+1] += field[i][j];
+    }
+  }
+  int Q;
+  cin >> Q;
+  while(Q--){
+    pnt s,g;
+    cin >> s.x >> s.y >> g.x >> g.y;
+    int sum = 0;
+    rep(i,s.y, g.y+1) {
+      sum += field[i][g.x] - field[i][s.x-1];
+    }
+    cout << sum << '\n';
+  }
   return 0;
 }

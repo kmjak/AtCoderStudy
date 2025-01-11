@@ -69,5 +69,26 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N;
+  cin >> N;
+  vi M(N);
+  vcin(N, M);
+  ll res = 0;
+  rep(i,1,N) {
+    int Low = 0;
+    int High = i;
+    while (High - Low > 1) {
+      int Mid = (High + Low) / 2;
+      if (M[Mid] <= M[i] / 2) {
+        Low = Mid;
+      } else {
+        High = Mid;
+      }
+    }
+    if (M[Low] <= M[i] / 2) {
+      res += Low + 1;
+    }
+  }
+  cout << res << endl;
   return 0;
 }

@@ -69,5 +69,39 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  // int N;
+  // cin >> N;
+  // vi A(N);
+  // vcin(N, A);
+  // rep(i,0,N) {
+  //   int j = i+1;
+  //   while(A[i] > 0 && j < N) {
+  //     A[j]++;
+  //     A[i]--;
+  //     j++;
+  //   }
+  // }
+  // vcout(A);
+
+  int N;
+  cin >> N;
+  vi A(N);
+  vcin(N, A);
+  vi cum(N+1, 0);
+  rep(i,0,N) {
+    A[i] -= min(A[i],N-i-1);
+    if(A[i] > 0){
+      cum[1]++;
+      cum[1+A[i]]--;
+    }else{
+      int j = i+1;
+      while(A[i] > 0 && j < N) {
+        A[j]++;
+        A[i]--;
+        j++;
+      }
+    }
+  }
+  vcout(A);
   return 0;
 }

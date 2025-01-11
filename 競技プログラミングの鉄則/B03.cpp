@@ -17,7 +17,6 @@
 #define tos(n) to_string(n)
 #define toc(n) '0' + n
 #define toi(s) stoi(s)
-#define tob(b) static_cast<int>(b.to_ulong())
 
 #define NO cout << "No" << endl
 #define YES cout << "Yes" << endl
@@ -69,5 +68,20 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N;
+  cin >> N;
+  vi A(N);
+  vcin(N,A);
+  rep(i,0,N) {
+    rep(j,i+1,N) {
+      rep(k,j+1,N) {
+        if(A[i] + A[j] + A[k] == 1000){
+          YES;
+          return 0;
+        }
+      }
+    }
+  }
+  NO;
   return 0;
 }
