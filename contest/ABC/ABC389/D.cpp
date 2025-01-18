@@ -67,10 +67,37 @@ struct pnt {
   ll y;
 };
 
+int R;
+
+ll sum(int n)
+{
+  if(n < 3) return 0;
+  return ((n-2)*(n-1))/2;
+}
+
+bool calc(double x, double y)
+{
+  x+=0.5;
+  y+=0.5;
+  // cout << sqrt(x*x + y*y) << '\n';
+  return sqrt(x*x + y*y) < R;
+}
 int main()
 {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  return 0;
+  cin >> R;
+  ll res = (R-1)*4+1+sum(R)*4;
+  rep(i,1,R+1) {
+    rep(j,R-i,R+1) {
+      if(calc(i,j)){
+        res += 4;
+      }else{
+        break;
+      }
+    }
+  }
+
+  cout << res << '\n';
 }

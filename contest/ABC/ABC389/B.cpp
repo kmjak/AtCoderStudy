@@ -72,5 +72,14 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  ll X;
+  cin >> X;
+  ll n = 1;
+  int i = 2;
+  while(n != X){
+    n *= i;
+    i++;
+  }
+  cout << i-1 << '\n';
   return 0;
 }

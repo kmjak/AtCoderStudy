@@ -72,5 +72,17 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N;
+  cin >> N;
+  vi A(N);
+  vcin(A);
+  sort(all(A));
+  int Q;
+  cin >> Q;
+  while(Q--){
+    int x;
+    cin >> x;
+    cout << distance(A.begin(), lbs(A,x)) << '\n';
+  }
   return 0;
 }

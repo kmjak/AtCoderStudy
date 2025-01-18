@@ -17,17 +17,14 @@
 #define tos(n) to_string(n)
 #define toc(n) '0' + n
 #define toi(s) stoi(s)
-#define btoi(b) static_cast<int>(b.to_ulong())
+#define tob(b) static_cast<int>(b.to_ulong())
 
 #define NO cout << "No" << endl
 #define YES cout << "Yes" << endl
+#define END cout << '\n'
 
-#define vcin(A) rep(i,0,A.size()) cin >> A[i]
-#define vcout(X) rep(i, 0, X.size()) cout << X[i] << (i == X.size() - 1 ? '\n' : ' ')
-
-#define bs(A,X) binary_search(all(A),X)
-#define lbs(A,X) lower_bound(all(A),X)
-#define ubs(A,X) upper_bound(all(A),X)
+#define vcin(N,A) rep(i,0,N) cin >> A[i]
+#define vcout(X) rep(i, 0, X.size()) cout << X[i] << (i == X.size() - 1 ? '\n' : ' ');
 
 using namespace std;
 
@@ -72,5 +69,42 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N;
+  cin >> N;
+  int MAX = 1520;
+  vvi Grid(MAX,vi(MAX,0));
+  while(N--){
+    pnt left,right;
+    cin >> left.x >> left.y >> right.x >> right.y;
+    Grid[left.y][left.x]++;
+    Grid[left.y][right.x]--;
+    Grid[right.y][left.x]--;
+    Grid[right.y][right.x]++;
+  }
+
+  rep(i,0,MAX) {
+    rep(j,0,MAX-1) {
+      Grid[i][j+1] += Grid[i][j];
+    }
+  }
+
+  rep(i,0,MAX) {
+    rep(j,0,MAX-1) {
+      Grid[j+1][i] += Grid[j][i];
+    }
+  }
+  int res = 0;
+
+  rep(i,0,MAX) {
+    rep(j,0,MAX) {
+      // cout << Grid[i][j] << ' ';
+      if(Grid[i][j] != 0){
+        res++;
+      }
+    }
+    // END;
+  }
+
+  cout << res << '\n';
   return 0;
 }

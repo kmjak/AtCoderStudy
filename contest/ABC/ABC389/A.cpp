@@ -72,5 +72,8 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  string S;
+  cin >> S;
+  cout << toi(string(1, S[0])) * toi(string(1, S[2])) << '\n';
   return 0;
 }

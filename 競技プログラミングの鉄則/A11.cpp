@@ -21,9 +21,10 @@
 
 #define NO cout << "No" << endl
 #define YES cout << "Yes" << endl
+#define END cout << '\n'
 
-#define vcin(A) rep(i,0,A.size()) cin >> A[i]
-#define vcout(X) rep(i, 0, X.size()) cout << X[i] << (i == X.size() - 1 ? '\n' : ' ')
+#define vcin(N,A) rep(i,0,N) cin >> A[i]
+#define vcout(X) rep(i, 0, X.size()) cout << X[i] << (i == X.size() - 1 ? '\n' : ' ');
 
 #define bs(A,X) binary_search(all(A),X)
 #define lbs(A,X) lower_bound(all(A),X)
@@ -72,5 +73,37 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  // int N,X;
+  // cin >> N >> X;
+  // rep(i,0,N) {
+  //   int n;
+  //   cin >> n;
+  //   if(X==n){
+  //     cout << i+1 << '\n';
+  //     return 0;
+  //   }
+  // }
+
+  // int N,X;
+  // cin >> N >> X;
+  // vi A(N);
+  // vcin(N,A);
+  // int s = 0;
+  // int l = N;
+  // while(l-s > 1){
+  //   int m = (l + s)/2;
+  //   if(A[m] > X){
+  //     l = m;
+  //   }else{
+  //     s = m;
+  //   }
+  // }
+  // cout << l << '\n';
+
+  int N,X;
+  cin >> N >> X;
+  vi A(N);
+  vcin(N,A);
+  cout << distance(A.begin(), lbs(A,X))+1 << '\n';
   return 0;
 }

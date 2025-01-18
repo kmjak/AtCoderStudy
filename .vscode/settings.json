@@ -71,6 +71,7 @@
         "vector": "cpp",
         "algorithm": "cpp",
         "memory": "cpp",
-        "print": "cpp"
+        "print": "cpp",
+        "iterator": "cpp"
     }
 }

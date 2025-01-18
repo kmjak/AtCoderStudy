@@ -21,13 +21,10 @@
 
 #define NO cout << "No" << endl
 #define YES cout << "Yes" << endl
+#define END cout << '\n'
 
-#define vcin(A) rep(i,0,A.size()) cin >> A[i]
-#define vcout(X) rep(i, 0, X.size()) cout << X[i] << (i == X.size() - 1 ? '\n' : ' ')
-
-#define bs(A,X) binary_search(all(A),X)
-#define lbs(A,X) lower_bound(all(A),X)
-#define ubs(A,X) upper_bound(all(A),X)
+#define vcin(N,A) rep(i,0,N) cin >> A[i]
+#define vcout(X) rep(i, 0, X.size()) cout << X[i] << (i == X.size() - 1 ? '\n' : ' ');
 
 using namespace std;
 
@@ -72,5 +69,24 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N,D;
+  cin >> N;
+  vi A(N),left(N+1,0),right(N+1,0);
+  rep(i,0,N) {
+    cin >> A[i];
+  }
+  rep(i,0,N) {
+    left[i+1] += max(left[i], A[i]);
+    right[i+1] = max(right[i],A[N-i-1]);
+  }
+  cin >> D;
+  while(D--){
+    int l,r;
+    cin >> l >> r;
+    l--;r--;
+    cout << max(left[l],right[N-r-1]) << '\n';
+  }
+  // vcout(left);
+  // vcout(right);
   return 0;
 }

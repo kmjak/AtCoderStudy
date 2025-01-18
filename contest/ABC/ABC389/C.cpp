@@ -62,9 +62,9 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
-struct pnt {
-  ll x;
-  ll y;
+struct M {
+  ll head;
+  ll len;
 };
 
 int main()
@@ -72,5 +72,34 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int Q;
+  cin >> Q;
+  vll sum = {0};
+  ll remove = 0;
+  vll res;
+  int add_k = 0;
+  int r_i = 1;
+  rep(i,0,Q) {
+    int m;
+    cin >> m;
+    if(m == 1){
+      ll l;
+      cin >> l;
+      sum.eb(sum.back() + l);
+    }else if(m == 2){
+      remove = sum[r_i];
+      r_i++;
+      add_k++;
+    }else{
+      int k;
+      cin >> k;
+      k--;
+      res.eb(sum[k + add_k] - remove);
+    }
+  }
+  repa(x, res){
+    cout << x << '\n';
+  }
+  // vcout(sum);
   return 0;
 }
