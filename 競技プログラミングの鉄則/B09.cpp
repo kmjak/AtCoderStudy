@@ -69,38 +69,42 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  int H,W,N;
-  cin >> H >> W >> N;
-  vvi Grid(H+1,vi(W+1,0));
+  int N;
+  cin >> N;
+  int MAX = 1520;
+  vvi Grid(MAX,vi(MAX,0));
   while(N--){
-    pnt s,g;
-    cin >> s.y >> s.x >> g.y >> g.x;
-    s.x--;
-    s.y--;
-    Grid[s.y][s.x]++;
-    Grid[s.y][g.x]--;
-    Grid[g.y][s.x]--;
-    Grid[g.y][g.x]++;
+    pnt left,right;
+    cin >> left.x >> left.y >> right.x >> right.y;
+    Grid[left.y][left.x]++;
+    Grid[left.y][right.x]--;
+    Grid[right.y][left.x]--;
+    Grid[right.y][right.x]++;
   }
 
-
-  rep(i,0,H) {
-    rep(j,0,W-1) {
+  rep(i,0,MAX) {
+    rep(j,0,MAX-1) {
       Grid[i][j+1] += Grid[i][j];
     }
   }
 
-  rep(i,0,W) {
-    rep(j,0,H-1) {
+  rep(i,0,MAX) {
+    rep(j,0,MAX-1) {
       Grid[j+1][i] += Grid[j][i];
     }
   }
+  int res = 0;
 
-  rep(i,0,H) {
-    rep(j,0,W) {
-      cout << Grid[i][j] << " ";
+  rep(i,0,MAX) {
+    rep(j,0,MAX) {
+      // cout << Grid[i][j] << ' ';
+      if(Grid[i][j] != 0){
+        res++;
+      }
     }
-    cout << '\n';
+    // END;
   }
+
+  cout << res << '\n';
   return 0;
 }
