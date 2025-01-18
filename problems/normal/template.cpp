@@ -21,10 +21,13 @@
 
 #define NO cout << "No" << endl
 #define YES cout << "Yes" << endl
-#define END cout << '\n'
 
-#define vcin(N,A) rep(i,0,N) cin >> A[i]
-#define vcout(X) rep(i, 0, X.size()) cout << X[i] << (i == X.size() - 1 ? '\n' : ' ');
+#define vcin(A) rep(i,0,A.size()) cin >> A[i]
+#define vcout(X) rep(i, 0, X.size()) cout << X[i] << (i == X.size() - 1 ? '\n' : ' ')
+
+#define bs(A,X) binary_search(all(A),X)
+#define lbs(A,X) lower_bound(all(A),X)
+#define ubs(A,X) upper_bound(all(A),X)
 
 using namespace std;
 
