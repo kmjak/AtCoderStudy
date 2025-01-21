@@ -1,34 +1,23 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 using ll=long long;
-
 ll N,K;
-ll sum=0,res=0;
-vector<ll> A(1e5+10),R(1e5+10,1);
-
+ll res=0;
 int main()
 {
   cin>>N>>K;
-  for(ll i=0;i<N;i++){
+  vector<ll> A(N),idx(N,1),sum(N+1,0);
+  for(int i=0;i<N;i++){
     cin>>A[i];
     if(A[i]<=K)res++;
-  }
-  sum=A[0];
-  for(ll i=0;i<N-1;i++){
-    if(i!=0)R[i]=R[i-1];
-    while(R[i]<N&&sum+A[R[i]]<=K){
-      sum+=A[R[i]];
-      R[i]++;
-    }
-    // cout<<sum<<endl;
-    if(sum!=0)sum-=A[i];
-    // cout<<R[i]<<endl;
+    sum[i+1]+=sum[i]+A[i];
   }
   for(int i=0;i<N-1;i++){
-    res+=R[i]-i-1;
+    if(i!=0)idx[i]=idx[i-1];
+    while(idx[i]<N&&sum[idx[i]+1]-sum[i]<=K)idx[i]++;
+    // cout<<idx[i]<<endl;
   }
+  for(int i=0;i<N-1;i++)res+=idx[i]-i-1;
   cout<<res<<endl;
 }
-
