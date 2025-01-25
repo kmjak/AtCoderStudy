@@ -66,8 +66,26 @@ struct pnt {
   ll x;
   ll y;
 };
+
 int N;
-vll A(12);
+vll A(12,0),S(12,0);
+ll val;
+unordered_set<ll> res;
+void dfs(int idx,int sz)
+{
+  rep(i,0,sz+1){
+    val^=S[i];
+    S[i]+=A[idx];
+    val^=S[i];
+    if(idx==N-1)res.insert(val);
+    else if(i<sz)dfs(idx+1,sz);
+    else dfs(idx+1,sz+1);
+    val^=S[i];
+    S[i]-=A[idx];
+    val^=S[i];
+  }
+  return;
+}
 
 int main()
 {
@@ -78,15 +96,8 @@ int main()
   rep(i,0,N) {
     cin>>A[i];
   }
-  rep(i,0,1<<N) {
-    rep(j,0,N) {
-      if(1&(i>>j)){
-        rep(k,0,1<<N) {
-          rep(l,0,N) {
-          }
-        }
-      }
-    }
-  }
+  val=0;
+  dfs(0,0);
+  cout<<((int)(res.size()))<<endl;
   return 0;
 }
