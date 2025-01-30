@@ -2,35 +2,26 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-int N;
-long long W;
-long long MAX=1e6;
-vector<long long> Cost(110,0),Val(110,0);
-vector<vector<long long>> dp(110,vector<long long>(MAX+10,-1));
-int main()
+long long N,W;
+vector<long long> C(110,0),V(110,0);
+vector<vector<long long>> dp(110,vector<long long> (1e5+10,0));
+
+int  main()
 {
   cin>>N>>W;
-  long long res=0;
-  dp[0][0]=0;
-  for(int i=1;i<=N;i++)cin>>Cost[i]>>Val[i];
-  for(int i=1;i<=N;i++){
-    // cout<<"--------------------"<<endl;
-    // cout<<i<<endl;;
-    for(int j=MAX+5;j>=0;j--){
-      if(dp[i-1][j]!=-1){
-        if(dp[i][j]==-1)dp[i][j]=dp[i-1][j];
-        if(dp[i][j+Val[i]]==-1){
-          dp[i][j+Val[i]]=dp[i][j]+Cost[i];
-          // cout<<j+Val[i]<<" "<<dp[i][j+Val[i]]<<endl;
-          continue;
-        }
-        dp[i][j+Val[i]]=min(dp[i][j+Val[i]],dp[i][j]+Cost[i]);
-        // cout<<dp[i][j]+Cost[i]<<" "<<dp[i][j+Val[i]]<<endl;
+  for(long long i=0;i<N;i++)cin>>C[i]>>V[i];
+  for(long long i=1;i<=N;i++){
+    for(long long j=1;j<=W;j++){
+      dp[i][j]=dp[i-1][j];
+      if(j>=C[i-1]){
+        if(dp[i][j]<dp[i-1][j-C[i-1]]+V[i-1])dp[i][j]=dp[i-1][j-C[i-1]]+V[i-1];
       }
     }
   }
-  for(int i=0;i<=MAX+5;i++){
-    if(dp[N][i]<=W&&dp[N][i]!=-1)res=i;
-  }
-  cout<<res<<endl;
+  // for(long long i=0;i<N+1;i++){
+    // for(long long j=0;j<=W;j++)cout<<dp[i][j]<<" ";
+    // cout<<endl;
+  // }
+  cout<<dp[N][W]<<endl;
 }
+
