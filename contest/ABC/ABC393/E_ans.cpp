@@ -67,23 +67,30 @@ struct pnt {
   ll y;
 };
 
-ll N;
-string S;
-
 int main()
 {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  cin>>N>>S;
-  ll c1=0;
-  rep(i,0,N) if(S[i]=='1') c1++;
-  ll now=0;
-  ll res=0;
-  rep(i,0,N){
-    if(S[i]=='1') now++;
-    else res+=min(now,c1-now);
+  int N,K;
+  cin >> N >> K;
+  vi A(N);
+  rep(i,0,N) cin >> A[i];
+  int M=*max_element(all(A));
+  vi s(M+1),t(M+1),u(M+1);
+  rep(i,0,N) s[A[i]]++;
+  // vcout(s);
+  rep(i,1,M+1){
+    for(int j=i;j<=M;j+=i) t[i]+=s[j];
   }
-  cout<<res<<endl;
+  // vcout(t);
+
+  rep(i,1,M+1){
+    if(t[i]<K) continue;
+    for(int j=i;j<=M;j+=i) chmax(u[j],i);
+  }
+  // vcout(u);
+
+  rep(i,0,N) cout<<u[A[i]]<<endl;
   return 0;
 }
