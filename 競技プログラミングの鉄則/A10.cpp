@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#includ <bits/stdc++.h>
 
 #define rep(i,s,n) for(auto i = s; i < n; i++)
 #define rrep(i,s,n) for(auto i = s; i > n; i--)
