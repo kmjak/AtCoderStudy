@@ -62,16 +62,6 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
-struct swt {
-  int swt1;
-  int swt2;
-};
-
-struct pnt {
-  int nest;
-  int turn;
-};
-
 int N,Q;
 int main()
 {
@@ -79,50 +69,32 @@ int main()
   cin.tie(0);
   cout.tie(0);
   cin>>N>>Q;
-  vector<pnt> bird(N+1,{-1,-1});
-  vector<swt> swt(Q);
-  vi nestLastUpdated(N+1,-1);
-  vi nestAt(N+1,-1);
-  iota(all(nestAt),0);
-  rep(i,1,N+1){
-    bird[i].nest = i;
-  }
-  vector<pi> act;
-  vi res;
-  rep(i,0,Q){
+  vector<ll> box_to_label(N),label_to_box(N),pigeon_to_box(N);
+  iota(begin(box_to_label), end(box_to_label), 0LL);
+  iota(begin(label_to_box), end(label_to_box), 0LL);
+  iota(begin(pigeon_to_box), end(pigeon_to_box), 0LL);
+  while(Q--){
     int opt;
     cin>>opt;
     if(opt==1){
-      int bd,nest;
-      cin>>bd>>nest;
-      bird[bd].nest = nest;
-      bird[bd].turn = i;
+      ll pigeon,to;
+      cin>>pigeon>>to;
+      pigeon--;
+      to--;
+      pigeon_to_box[pigeon]=label_to_box[to];
     }else if(opt==2){
-      int nest1,nest2;
-      cin>>nest1>>nest2;
-      swt[i]= {nest1,nest2};
-      nestLastUpdated[nest1] = i;
-      nestLastUpdated[nest2] = i;
+      ll label1,label2;
+      cin>>label1>>label2;
+      label1--;
+      label2--;
+      swap(label_to_box[label1],label_to_box[label2]);
+      swap(box_to_label[label_to_box[label1]],box_to_label[label_to_box[label2]]);
     }else{
-      int bd;
-      cin>>bd;
-      int nest = bird[bd].nest;
-      int turn = bird[bd].turn;
-      int lastUpdated = nestLastUpdated[nest];
-      rep(j,turn,lastUpdated+1){
-        if(swt[j].swt1==nest){
-          nest = swt[j].swt2;
-          lastUpdated=nestLastUpdated[swt[j].swt2];
-        }else if(swt[j].swt2==nest){
-          lastUpdated=nestLastUpdated[swt[j].swt1];
-          nest = swt[j].swt1;
-        }
-      }
-      res.eb(nest);
+      ll pigeon;
+      cin>>pigeon;
+      pigeon--;
+      cout<<box_to_label[pigeon_to_box[pigeon]]+1<<endl;
     }
-  }
-  repa(x,res){
-    cout<<x<<endl;
   }
   return 0;
 }
