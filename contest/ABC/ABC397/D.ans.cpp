@@ -31,20 +31,20 @@
 
 using namespace std;
 
-using ll=unsigned long long int;
-using pi=pair<int,int>;
-using qi=queue<int>;
-using qp=queue<pi>;
-using si=set<int>;
+using ll = long long;  // ← 修正
+using pi = pair<int, int>;
+using qi = queue<int>;
+using qp = queue<pi>;
+using si = set<int>;
 
-using vi=vector<int>;
-using vll=vector<ll>;
-using vs=vector<string>;
-using vc=vector<char>;
-using vb=vector<bool>;
+using vi = vector<int>;
+using vll = vector<ll>;
+using vs = vector<string>;
+using vc = vector<char>;
+using vb = vector<bool>;
 
-using vvi=vector<vi>;
-using vvll=vector<vll>;
+using vvi = vector<vi>;
+using vvll = vector<vll>;
 
 template<typename T> inline bool chmin(T &a, T b) {
   if (a > b) {
@@ -62,37 +62,33 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
-struct pnt {
-  ll x;
-  ll y;
-};
+ll solve(ll a, ll b, ll c) {
+  ll l = 0, r = 600000001;
+  while (r - l > 1) {
+    ll mid = (l + r) / 2;
+    if (a * mid * mid + b * mid + c <= 0) l = mid;
+    else r = mid;
+  }
+  if (a * l * l + b * l + c == 0) return l;
+  return -1;
+}
 
-int main()
-{
+int main() {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
   ll X;
   cin >> X;
-  // rep(i,1LL,1e7){
-  for(ll i=1;i<=4e6;i++){
-    ll tg=X+i*i*i;
-    ll l=0;
-    ll r=1e12;
-    while(r-l>1){
-      ll m=(l+r)/2;
-      ll n=tg/m/m;
-      ll m2=m;
-      // cout<<tg<<" "<<i<<" "<<m<<" "<<n<<endl;
-      if(n<m2)r=m;
-      else l=m;
-    }
-    // cout<<"------"<<l<<" "<<r<<endl;
-    if(l*l*l==tg){
-      cout<<l<<" "<<i<<endl;
+
+  for (ll d = 1; d * d * d <= X; ++d) {
+    if (X % d != 0) continue;
+    ll m = X / d;
+    ll k = solve(3, 3 * d, d * d - m);
+    if (k > 0) {
+      cout << k + d << " " << k << endl;
       return 0;
     }
   }
-  cout<<-1<<endl;
+  cout << -1 << endl;
   return 0;
 }
