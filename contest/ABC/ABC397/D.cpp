@@ -31,7 +31,7 @@
 
 using namespace std;
 
-using ll=long long int;
+using ll=unsigned long long int;
 using pi=pair<int,int>;
 using qi=queue<int>;
 using qp=queue<pi>;
@@ -62,39 +62,37 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
-int N,Q;
+struct pnt {
+  ll x;
+  ll y;
+};
+
 int main()
 {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  cin>>N>>Q;
-  vector<ll> box_to_label(N),label_to_box(N),pigeon_to_box(N);
-  iota(begin(box_to_label), end(box_to_label), 0LL);
-  iota(begin(label_to_box), end(label_to_box), 0LL);
-  iota(begin(pigeon_to_box), end(pigeon_to_box), 0LL);
-  while(Q--){
-    int opt;
-    cin>>opt;
-    if(opt==1){
-      ll pigeon,to;
-      cin>>pigeon>>to;
-      pigeon--;
-      to--;
-      pigeon_to_box[pigeon]=label_to_box[to];
-    }else if(opt==2){
-      ll label1,label2;
-      cin>>label1>>label2;
-      label1--;
-      label2--;
-      swap(label_to_box[label1],label_to_box[label2]);
-      swap(box_to_label[label_to_box[label1]],box_to_label[label_to_box[label2]]);
-    }else{
-      ll pigeon;
-      cin>>pigeon;
-      pigeon--;
-      cout<<box_to_label[pigeon_to_box[pigeon]]+1<<endl;
+  ll X;
+  cin >> X;
+  // rep(i,1LL,1e7){
+  for(ll i=1;i<=4e6;i++){
+    ll tg=X+i*i*i;
+    ll l=0;
+    ll r=1e12;
+    while(r-l>1){
+      ll m=(l+r)/2;
+      ll n=tg/m/m;
+      ll m2=m;
+      // cout<<tg<<" "<<i<<" "<<m<<" "<<n<<endl;
+      if(n<m2)r=m;
+      else l=m;
+    }
+    // cout<<"------"<<l<<" "<<r<<endl;
+    if(l*l*l==tg){
+      cout<<l<<" "<<i<<endl;
+      return 0;
     }
   }
+  cout<<-1<<endl;
   return 0;
 }

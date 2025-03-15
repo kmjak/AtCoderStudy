@@ -62,39 +62,38 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
-int N,Q;
+struct pnt {
+  ll x;
+  ll y;
+};
+
 int main()
 {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  cin>>N>>Q;
-  vector<ll> box_to_label(N),label_to_box(N),pigeon_to_box(N);
-  iota(begin(box_to_label), end(box_to_label), 0LL);
-  iota(begin(label_to_box), end(label_to_box), 0LL);
-  iota(begin(pigeon_to_box), end(pigeon_to_box), 0LL);
-  while(Q--){
-    int opt;
-    cin>>opt;
-    if(opt==1){
-      ll pigeon,to;
-      cin>>pigeon>>to;
-      pigeon--;
-      to--;
-      pigeon_to_box[pigeon]=label_to_box[to];
-    }else if(opt==2){
-      ll label1,label2;
-      cin>>label1>>label2;
-      label1--;
-      label2--;
-      swap(label_to_box[label1],label_to_box[label2]);
-      swap(box_to_label[label_to_box[label1]],box_to_label[label_to_box[label2]]);
-    }else{
-      ll pigeon;
-      cin>>pigeon;
-      pigeon--;
-      cout<<box_to_label[pigeon_to_box[pigeon]]+1<<endl;
-    }
+  // 3e5
+  int N;
+  cin>>N;
+  vi A(N);
+  vcin(A);
+  vi sum(N);
+  set<int> cnt;
+  map<int,int> cnt2;
+  rep(i,0,N){
+    cnt2[A[i]]++;
+    cnt.insert(A[i]);
+    sum[i]=cnt.size();
   }
+  rep(i,0,N){
+    cnt2[A[i]]--;
+    if(cnt2[A[i]]==0)cnt.erase(A[i]);
+    sum[i]+=cnt.size();
+  }
+  int res=0;
+  rep(i,0,N){
+    chmax(res,sum[i]);
+  }
+  cout<<res<<endl;
   return 0;
 }

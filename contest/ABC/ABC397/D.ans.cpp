@@ -31,20 +31,20 @@
 
 using namespace std;
 
-using ll=long long int;
-using pi=pair<int,int>;
-using qi=queue<int>;
-using qp=queue<pi>;
-using si=set<int>;
+using ll = long long;  // ← 修正
+using pi = pair<int, int>;
+using qi = queue<int>;
+using qp = queue<pi>;
+using si = set<int>;
 
-using vi=vector<int>;
-using vll=vector<ll>;
-using vs=vector<string>;
-using vc=vector<char>;
-using vb=vector<bool>;
+using vi = vector<int>;
+using vll = vector<ll>;
+using vs = vector<string>;
+using vc = vector<char>;
+using vb = vector<bool>;
 
-using vvi=vector<vi>;
-using vvll=vector<vll>;
+using vvi = vector<vi>;
+using vvll = vector<vll>;
 
 template<typename T> inline bool chmin(T &a, T b) {
   if (a > b) {
@@ -62,39 +62,33 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
-int N,Q;
-int main()
-{
+ll solve(ll a, ll b, ll c) {
+  ll l = 0, r = 600000001;
+  while (r - l > 1) {
+    ll mid = (l + r) / 2;
+    if (a * mid * mid + b * mid + c <= 0) l = mid;
+    else r = mid;
+  }
+  if (a * l * l + b * l + c == 0) return l;
+  return -1;
+}
+
+int main() {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  cin>>N>>Q;
-  vector<ll> box_to_label(N),label_to_box(N),pigeon_to_box(N);
-  iota(begin(box_to_label), end(box_to_label), 0LL);
-  iota(begin(label_to_box), end(label_to_box), 0LL);
-  iota(begin(pigeon_to_box), end(pigeon_to_box), 0LL);
-  while(Q--){
-    int opt;
-    cin>>opt;
-    if(opt==1){
-      ll pigeon,to;
-      cin>>pigeon>>to;
-      pigeon--;
-      to--;
-      pigeon_to_box[pigeon]=label_to_box[to];
-    }else if(opt==2){
-      ll label1,label2;
-      cin>>label1>>label2;
-      label1--;
-      label2--;
-      swap(label_to_box[label1],label_to_box[label2]);
-      swap(box_to_label[label_to_box[label1]],box_to_label[label_to_box[label2]]);
-    }else{
-      ll pigeon;
-      cin>>pigeon;
-      pigeon--;
-      cout<<box_to_label[pigeon_to_box[pigeon]]+1<<endl;
+  ll X;
+  cin >> X;
+
+  for (ll d = 1; d * d * d <= X; ++d) {
+    if (X % d != 0) continue;
+    ll m = X / d;
+    ll k = solve(3, 3 * d, d * d - m);
+    if (k > 0) {
+      cout << k + d << " " << k << endl;
+      return 0;
     }
   }
+  cout << -1 << endl;
   return 0;
 }
