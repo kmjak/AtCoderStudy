@@ -1,10 +1,5 @@
 #include <bits/stdc++.h>
 
-#define rep(i,s,n) for(auto i = s; i < n; i++)
-#define rrep(i,s,n) for(auto i = s; i > n; i--)
-#define repa(i, x) for(auto i : x)
-#define rrepa(i, x) for(auto i = x.rbegin(); i != x.rend(); ++i)
-
 #define all(x) x.begin(), x.end()
 #define rall(x) x.rbegin(), x.rend()
 
@@ -18,12 +13,6 @@
 #define toc(n) '0' + n
 #define toi(s) stoi(s)
 #define btoi(b) static_cast<int>(b.to_ulong())
-
-#define NO cout << "No" << endl
-#define YES cout << "Yes" << endl
-
-#define vcin(A) rep(i,0,A.size()) cin >> A[i]
-#define vcout(X) rep(i, 0, X.size()) cout << X[i] << (i == X.size() - 1 ? '\n' : ' ')
 
 #define bs(A,X) binary_search(all(A),X)
 #define lbs(A,X) lower_bound(all(A),X)

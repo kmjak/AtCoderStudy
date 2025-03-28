@@ -56,10 +56,38 @@ struct pnt {
   ll y;
 };
 
+int randInt(int l, int r) {
+  return l + rand() % (r - l + 1);
+}
+
 int main()
 {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N;
+  cin>>N;
+  map<ll,int> m;
+  vector<ll> A(N);
+  for(int i=0;i<N;i++){
+    cin>>A[i];
+    m[A[i]]++;
+  }
+  ll MAX=-1;
+  for(auto x: m){
+    if(x.second!=1)continue;
+    chmax(MAX,x.first);
+  }
+  if(MAX==-1){
+    cout<<-1<<endl;
+    return 0;
+  }else{
+    for(int i=0;i<N;i++){
+      if(A[i]==MAX){
+        cout<<i+1<<endl;
+        break;
+      }
+    }
+  }
   return 0;
 }

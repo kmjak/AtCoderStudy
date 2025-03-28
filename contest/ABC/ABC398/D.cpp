@@ -56,10 +56,64 @@ struct pnt {
   ll y;
 };
 
+int R,C;
+
+int randInt(int l, int r) {
+  return l + rand() % (r - l + 1);
+}
+
+int getDy(char c)
+{
+  if(c=='N')return -1;
+  else if(c=='S') return 1;
+  return 0;
+}
+
+int getDx(char c)
+{
+  if(c=='W')return -1;
+  else if(c=='E') return 1;
+  return 0;
+}
+
+bool isSmoke(int x, int y)
+{
+  return C==x&&y==R;
+}
+
 int main()
 {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N;
+  string S;
+  cin>>N>>R>>C>>S;
+  int X=0;
+  int Y=0;
+  vector<pair<int,int>> smoke;
+  smoke.eb(mp(0,0));
+  int i=0;
+  for(auto c:S){
+    int x=getDx(c);
+    int y=getDy(c);
+    for(int j=0;j<=i;j++){
+      smoke[j]=mp(smoke[j].first+x,smoke[j].second+y);
+    }
+    smoke.eb(mp(0,0));
+    bool isTrue=false;
+    for(auto s:smoke){
+      if(isSmoke(s.first,s.second)){
+        cout<<1;
+        isTrue=true;
+        break;
+      }
+    }
+    if(!isTrue){
+      cout<<0;
+    }
+    i++;
+  }
+  cout<<endl;
   return 0;
 }

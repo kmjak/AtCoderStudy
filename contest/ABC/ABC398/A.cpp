@@ -56,10 +56,31 @@ struct pnt {
   ll y;
 };
 
+int randInt(int l, int r) {
+  return l + rand() % (r - l + 1);
+}
+
 int main()
 {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N;
+  cin>>N;
+  vector<char> S(N);
+  for(int i=0;i<N/2;i++){
+    S[i]='-';
+    S[N-i-1]='-';
+  }
+  if(N%2==1){
+    S[N/2]='=';
+  }else{
+    S[N/2]='=';
+    S[N/2-1]='=';
+  }
+  for(auto c:S){
+    cout<<c;
+  }
+  cout<<endl;
   return 0;
 }
