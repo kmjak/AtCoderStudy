@@ -5,6 +5,7 @@
 
 #define mp make_pair
 #define mt make_tuple
+#define pb push_back
 #define eb emplace_back
 #define g(i,t) get<i>(t)
 
@@ -12,6 +13,10 @@
 #define toc(n) '0' + n
 #define toi(s) stoi(s)
 #define btoi(b) static_cast<int>(b.to_ulong())
+
+#define bs(A,X) binary_search(all(A),X)
+#define lbs(A,X) lower_bound(all(A),X)
+#define ubs(A,X) upper_bound(all(A),X)
 
 using namespace std;
 
@@ -56,5 +61,18 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int R, div;
+  cin>>R>>div;
+  if(div == 1 && (1600<=R && R<3000)){
+    cout<<"Yes"<<endl;
+    return 0;
+  }
+
+  if(div == 2&& (1200<=R && R <2400)){
+    cout<<"Yes"<<endl;
+    return 0;
+  }
+
+  cout<<"No"<<endl;
   return 0;
 }

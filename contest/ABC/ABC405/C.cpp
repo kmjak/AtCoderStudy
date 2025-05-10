@@ -5,6 +5,7 @@
 
 #define mp make_pair
 #define mt make_tuple
+#define pb push_back
 #define eb emplace_back
 #define g(i,t) get<i>(t)
 
@@ -12,6 +13,10 @@
 #define toc(n) '0' + n
 #define toi(s) stoi(s)
 #define btoi(b) static_cast<int>(b.to_ulong())
+
+#define bs(A,X) binary_search(all(A),X)
+#define lbs(A,X) lower_bound(all(A),X)
+#define ubs(A,X) upper_bound(all(A),X)
 
 using namespace std;
 
@@ -56,5 +61,20 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  int N;
+  cin>>N;
+  vi A(N);
+  vll sum(N+1,0);
+  for(int i=0;i<N;i++)cin>>A[i];
+
+  for(int i=0;i<N;i++){
+    sum[i+1]=sum[i]+A[i];
+  }
+
+  ll res=0;
+  for(int i=0;i<N-1;i++){
+    res+=(sum[N]-sum[i+1])*A[i];
+  }
+  cout<<res<<endl;
   return 0;
 }
