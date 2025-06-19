@@ -41,53 +41,58 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
+set<pair<int,int>> G_edges, H_edges;
 
 int main()
 {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  int N,MG;
+  int N, MG, MH;
   cin >> N >> MG;
-  vvi G(N),H(G);
-  rep(i,0,MG){
+
+  for(;MG--;){
     int u,v;
-    cin >> u >> v;
-    u--;
-    v--;
-    G[u].pb(v);
-    G[v].pb(u);
+    cin>> u >> v;
+    u--; v--;
+    G_edges.insert({u, v});
+    G_edges.insert({v, u});
   }
-  int MH;
-  cin >> MH;
-  rep(i,0,MH){
+
+  cin>> MH;
+  for(int i=0;i<MH;i++){
     int u,v;
-    cin >> u >> v;
-    u--;
-    v--;
-    H[u].pb(v);
-    H[v].pb(u);
+    cin>> u >> v;
+    u--; v--;
+    H_edges.insert({u, v});
+    H_edges.insert({v, u});
   }
-  vvi A(N);
-  rep(i,0,N-1){
-    rep(j,i+1,N){
-      int x;
-      cin >> x;
-      A[i].pb(x);
-      A[x].pb(i);
+
+  vvi Costs(N, vi(N, 0));
+  for(int i=0;i<N;i++){
+    for(int j=i+1;j<N;j++){
+      cin>> Costs[i][j];
+      Costs[j][i] = Costs[i][j];
     }
   }
-  int res = INT_MAX;
 
-  vi pattern(N);
-  rep(i,0,N) pattern[i] = i;
+  vi P(N);
+  iota(all(P), 0);
 
-  do
-  {
-    rep(i,0,N){
+  int res = 1e9;
+  do {
+    int sum = 0;
+    for(int i=0;i<N;i++){
+      for(int j=i+1;j<N;j++){
+        if (G_edges.count({i, j}) == H_edges.count({P[i], P[j]})) {
+          continue;
+        }
+        sum += Costs[P[i]][P[j]];
+      }
     }
-  } while (next_permutation(all(pattern)));
-  
+    // cout << "sum: " << sum << endl;
+    chmin(res, sum);
+  } while (next_permutation(all(P)));
   cout << res << endl;
   return 0;
 }
