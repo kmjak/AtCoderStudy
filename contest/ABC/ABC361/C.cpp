@@ -1,43 +1,73 @@
 #include <bits/stdc++.h>
-#define ll long long int
-#define vi vector<int>
-#define vll vector<ll>
-#define rep(s,n) for(int i = s; i < n; i++)
+
+#define all(x) x.begin(), x.end()
+#define rall(x) x.rbegin(), x.rend()
+
+#define mp make_pair
+#define mt make_tuple
+#define eb emplace_back
+#define g(i,t) get<i>(t)
+
+#define tos(n) to_string(n)
+#define toc(n) '0' + n
+#define toi(s) stoi(s)
+#define btoi(b) static_cast<int>(b.to_ulong())
+
 using namespace std;
+
+using ll=long long int;
+using pi=pair<int,int>;
+using qi=queue<int>;
+using qp=queue<pi>;
+using si=set<int>;
+
+using vi=vector<int>;
+using vll=vector<ll>;
+using vs=vector<string>;
+using vc=vector<char>;
+using vb=vector<bool>;
+
+using vvi=vector<vi>;
+using vvll=vector<vll>;
+
+template<typename T> inline bool chmin(T &a, T b) {
+  if (a > b) {
+    a = b;
+    return true;
+  }
+  return false;
+}
+
+template<typename T> inline bool chmax(T &a, T b) {
+  if (a < b) {
+    a = b;
+    return true;
+  }
+  return false;
+}
+
+struct pnt {
+  ll x;
+  ll y;
+};
+
 int main()
 {
-    int n,k;
-    cin >> n >> k;
-    vi a(n);
-    rep(0,n) cin >> a[i];
-    int ans = 1000000000;
-    vector<int> pattern(n-k);
-    int j = 0;
-    for(int i = n-k-1; i > -1; i--){
-        pattern[j] = i;
-        j++;
-    }
-    while(pattern[n-k-1] != n - (n - k)){ 
-        int min = 1000000000;
-        int max = 0;
-        for(int i = n-k-1; i > -1; i--){
-            if(a[pattern[i]] < min)min = a[pattern[i]];
-            if(a[pattern[i]] > max)max = a[pattern[i]];
-        }
-        if(ans > max - min)ans = max - min;
-        pattern[0]++;
-        bool flag = true;
-        while(flag){
-            flag = false;
-            for(int i = 0; i < n-k; i++){
-                if(pattern[i] >= n){
-                    pattern[i+1]++;
-                    pattern[i] = pattern[i+1] + 1;
-                    flag = true;
-                }
-            }
-            if(pattern[n-k-1] == n - (n - k))break;
-        }
-    }
-    cout << ans << endl;
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  cout.tie(0);
+  int N,K;
+  cin>>N>>K;
+  vll A(N);
+  for(int i=0;i<N;i++) {
+    cin>>A[i];
+  }
+  sort(all(A));
+
+  ll res = LLONG_MAX;
+  for(int i=0;i<=K;i++){
+    chmin(res, A[N-i-1] - A[K-i]);
+  }
+  cout << res << endl;
+  return 0;
 }
