@@ -56,18 +56,9 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  int N,K;
-  cin>>N>>K;
-  vll A(N);
-  for(int i=0;i<N;i++) {
-    cin>>A[i];
-  }
-  sort(all(A));
-
-  ll res = LLONG_MAX;
-  for(int i=0;i<=K;i++){
-    chmin(res, A[N-i-1] - A[K-i]);
-  }
-  cout << res << endl;
+  string P;
+  int L;
+  cin>>P>>L;
+  cout << (P.size()>=L ? "Yes":"No")<<endl;
   return 0;
 }

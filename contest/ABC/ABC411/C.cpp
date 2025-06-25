@@ -56,18 +56,49 @@ int main()
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  int N,K;
-  cin>>N>>K;
-  vll A(N);
-  for(int i=0;i<N;i++) {
-    cin>>A[i];
-  }
-  sort(all(A));
+  int N,Q;cin>>N>>Q;
 
-  ll res = LLONG_MAX;
-  for(int i=0;i<=K;i++){
-    chmin(res, A[N-i-1] - A[K-i]);
+  ll cur=0;
+  vb F(N,false);
+  while(Q--){
+    int a;cin>>a;
+    a--;
+    F[a]=!F[a];
+
+    if(a == 0){
+      if(F[a] == true && F[a+1] == false){
+        cur++;
+      }else if(F[a] == false && F[a+1] == false){
+        cur--;
+      }
+    }else if(a+1 == N){
+      if(F[a] == true && F[a-1] == false){
+        cur++;
+      }else if(F[a] == false && F[a-1] == false){
+        cur--;
+      }
+    }else{
+      if(F[a] == true){
+        if((F[a+1] || a+1 == N) == true && (F[a-1] || a == 0) == true){
+          cur--;
+        }else if((F[a+1] || a+1 == N) == false && (F[a-1] || a == 0) == false){
+          cur++;
+        }
+      }else{
+        if((F[a+1] || a+1 == N) == true && (F[a-1] || a == 0) == true){
+          cur++;
+        }else if((F[a+1] || a+1 == N) == false && (F[a-1] || a == 0) == false){
+          cur--;
+        }
+      }
+    }
+    cout<<cur<<endl;
+
+    // for(auto x: F){
+    //   cout<<x << " ";
+    // }
+    // cout<<endl;
   }
-  cout << res << endl;
+
   return 0;
 }
