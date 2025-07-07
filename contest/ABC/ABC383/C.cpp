@@ -1,29 +1,17 @@
 #include <bits/stdc++.h>
 
-#define rep(i,s,n) for(auto i = s; i < n; i++)
-#define rrep(i,s,n) for(auto i = s; i > n; i--)
-#define repa(i, x) for(auto i : x)
-#define rrepa(i, x) for(auto i = x.rbegin(); i != x.rend(); ++i)
-
 #define all(x) x.begin(), x.end()
 #define rall(x) x.rbegin(), x.rend()
 
 #define mp make_pair
 #define mt make_tuple
-#define pb push_back
 #define eb emplace_back
 #define g(i,t) get<i>(t)
 
 #define tos(n) to_string(n)
 #define toc(n) '0' + n
 #define toi(s) stoi(s)
-
-#define NO cout << "No" << endl
-#define YES cout << "Yes" << endl
-#define END cout << '\n'
-
-#define vcin(N,A) rep(i,0,N) cin >> A[i]
-#define vcout(X) rep(i, 0, X.size()) cout << X[i] << (i == X.size() - 1 ? '\n' : ' ');
+#define btoi(b) static_cast<int>(b.to_ulong())
 
 using namespace std;
 
@@ -58,63 +46,58 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
-ll H, W, D;
-vi dx = {1, 0, -1, 0};
-vi dy = {0, 1, 0, -1};
-set<pi> res;
+struct pnt {
+  ll x;
+  ll y;
+};
 
-bool isRange(int x, int y)
-{
-  return 0 <= x && x < H && 0 <= y && y < W;
+ll H,W,D;
+vs G(1010);
+vi dx={-1,0,1,0};
+vi dy={0,-1,0,1};
+ll res=0;
+
+bool isRange(ll x, ll y){
+  return 0<=x&&x<W&&0<=y&&y<H;
 }
 
-bool isManhattan(int x1, int y1, int x2, int y2)
+void bfs()
 {
-  return abs(x1 - x2) + abs(y1 - y2) <= D;
-}
-
-int bfs(vs &field, vvll &V , int x, int y,int k)
-{
-  qp q;
-  q.push(mp(x, y));
-  res.insert(mp(x, y));
-  V[x][y] = true;
-  while(!q.empty()) {
-    pi p = q.front();
-    q.pop();
-    rep(i,0,4) {
-      int nx = p.first + dx[i];
-      int ny = p.second + dy[i];
-      if(!isRange(nx, ny)) continue;
-      if(field[nx][ny] == '#') continue;
-      if(V[nx][ny] == k) continue;
-      if(!isManhattan(x, y, nx, ny)) continue;
-      V[nx][ny] = k;
-      q.push(mp(nx, ny));
-      res.insert(mp(nx, ny));
+  queue<pair<ll,ll>> q;
+  vvll dist(H, vll(W, -1));
+  for(ll i=0;i<H;i++){
+    for(ll j=0;j<W;j++){
+      if(G[i][j]=='H') {
+        dist[i][j] = 0;
+        q.push({i,j});
+      }
     }
   }
-  return 0;
+  while(!q.empty()){
+    auto [y,x] = q.front();
+    q.pop();
+    for(ll i=0;i<4;i++){
+      ll ny = y + dy[i];
+      ll nx = x + dx[i];
+      if(!isRange(nx, ny)) continue;
+      if(G[ny][nx]=='#') continue;
+      if(dist[ny][nx] != -1) continue;
+      dist[ny][nx] = dist[y][x] + 1;
+      q.push({ny,nx});
+    }
+  }
+  for(ll i=0;i<H;i++)for(ll j=0;j<W;j++) res+= (dist[i][j]!=-1&&dist[i][j]<=D);
 }
+
 
 int main()
 {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  cin >> H >> W >> D;
-  vs field(H);
-  vcin(H, field);
-  vvll V(H, vll(W, -1));
-  int k = 0;
-  rep(i,0,H) {
-    rep(j,0,W) {
-      if(field[i][j] == 'H'){
-        bfs(field, V, i, j, k);
-        k++;
-      }
-    }
-  }
-  cout << res.size() << '\n';
+  cin>>H>>W>>D;
+  for(ll i=0;i<H;i++)cin>>G[i];
+  bfs();
+  cout<<res<<endl;
   return 0;
 }
