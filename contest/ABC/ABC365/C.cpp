@@ -1,39 +1,83 @@
 #include <bits/stdc++.h>
-#define ll long long int
-#define vi vector<int>
-#define vll vector<ll>
-#define vvi vector<vi>
-#define vvll vector<vll>
-#define vs vector<string>
-#define rep(i,s,n) for(int i = s; i < n; i++)
-#define rrep(i,s,n) for(int i = s; i >= n; i--)
-#define repa(i, x) for(auto i : x)
+
 #define all(x) x.begin(), x.end()
 #define rall(x) x.rbegin(), x.rend()
+
+#define mp make_pair
+#define mt make_tuple
+#define eb emplace_back
+#define g(i,t) get<i>(t)
+
+#define tos(n) to_string(n)
+#define toc(n) '0' + n
+#define toi(s) stoi(s)
+#define btoi(b) static_cast<int>(b.to_ulong())
+
 using namespace std;
+
+using ll=long long int;
+using pi=pair<int,int>;
+using qi=queue<int>;
+using qp=queue<pi>;
+using si=set<int>;
+
+using vi=vector<int>;
+using vll=vector<ll>;
+using vs=vector<string>;
+using vc=vector<char>;
+using vb=vector<bool>;
+
+using vvi=vector<vi>;
+using vvll=vector<vll>;
+
+template<typename T> inline bool chmin(T &a, T b) {
+  if (a > b) {
+    a = b;
+    return true;
+  }
+  return false;
+}
+
+template<typename T> inline bool chmax(T &a, T b) {
+  if (a < b) {
+    a = b;
+    return true;
+  }
+  return false;
+}
+
+struct pnt {
+  ll x;
+  ll y;
+};
+
 int main()
 {
-  int n,m;
-  cin >> n >> m;
-  vi a(n);
-  rep(i, 0, n){
-    cin >> a[i];
-  }
-  if(m >= accumulate(all(a), 0)){
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  cout.tie(0);
+  ll N,M;cin>>N>>M;
+  vll A(N);
+  for(ll i=0;i<N;i++) cin>>A[i];
+  if(accumulate(all(A), 0LL)<=M){
     cout << "infinite" << endl;
     return 0;
   }
-  int x = 1;
-  int ans = 0;
-  while(true){
-    rep(i, 0, n){
-      ans += min(x, a[i]);
-      if(ans > m){
-        cout << x << endl;
-        return 0;
-      }
+
+  ll l=0;
+  ll r=M;
+  while(r-l>1){
+    ll mid = (l+r)/2;
+    ll sum=0;
+    for(ll i=0;i<N;i++){
+      sum+=min(mid,A[i]);
     }
-    x++;
+    if(sum >= M) {
+      r = mid;
+    } else {
+      l = mid;
+    }
   }
+  cout << l << endl;
   return 0;
 }
