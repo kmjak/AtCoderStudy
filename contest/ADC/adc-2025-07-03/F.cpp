@@ -51,32 +51,28 @@ struct pnt {
   ll y;
 };
 
-ll N;
-vs G(3010);
 int main()
 {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
+  ll N;
   cin>>N;
-  for(ll i=0;i<N;i++)cin>>G[i];
-  vs res = G;
+  long double sum=0;
+  vector<pair<ll, ll>> A(N);
   for(ll i=0;i<N;i++){
-    for(ll j=0;j<N;j++){
-      ll d = min({i+1, j+1, N-i, N-j});
-      ll ni = i;
-      ll nj = j;
-      for(ll k=0;k<d%4;k++){
-        ll tj = N-1-ni;
-        ni = nj;
-        nj = tj;
-      }
-      res[ni][nj] = G[i][j];
-    }
+    double a,b;
+    cin>>a>>b;
+    sum+=(a/b);
+    A[i] = {a, b};
   }
 
-  for(ll i=0;i<N;i++){
-    cout<<res[i]<<endl;
+  sum/=2;
+  long double res=0;
+  for(int i = 0; i < N; i++){
+    res += min(sum * A[i].second, (long double)A[i].first);
+    sum -= min(sum, (long double)A[i].first / A[i].second);
   }
+  cout<<fixed<<setprecision(10)<<res<<endl;
   return 0;
 }
