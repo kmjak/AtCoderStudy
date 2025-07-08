@@ -11,23 +11,21 @@
 #define tos(n) to_string(n)
 #define toc(n) '0' + n
 #define toi(s) stoi(s)
-#define btoi(b) static_cast<int>(b.to_ulong())
+#define btoi(b) static_cast<ll>(b.to_ulong())
 
 using namespace std;
 
 using ll=long long int;
-using pi=pair<int,int>;
-using qi=queue<int>;
-using qp=queue<pi>;
-using si=set<int>;
+using pll=pair<ll,ll>;
+using qll=queue<ll>;
+using qp=queue<pll>;
+using sll=set<ll>;
 
-using vi=vector<int>;
 using vll=vector<ll>;
 using vs=vector<string>;
 using vc=vector<char>;
 using vb=vector<bool>;
 
-using vvi=vector<vi>;
 using vvll=vector<vll>;
 
 template<typename T> inline bool chmin(T &a, T b) {
