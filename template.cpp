@@ -44,10 +44,8 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
-struct pnt {
-  ll x;
-  ll y;
-};
+vll dx={1, 0, -1, 0};
+vll dy={0, 1, 0, -1};
 
 int main()
 {
