@@ -16,10 +16,8 @@
 using namespace std;
 
 using ll=long long int;
-using pll=pair<ll,ll>;
 using qll=queue<ll>;
-using qp=queue<pll>;
-using sll=set<ll>;
+using dq=deque<ll>;
 
 using vll=vector<ll>;
 using vs=vector<string>;
@@ -46,6 +44,7 @@ template<typename T> inline bool chmax(T &a, T b) {
 
 vll dx={1, 0, -1, 0};
 vll dy={0, 1, 0, -1};
+const ll MOD=1e9+7;
 
 int main()
 {
