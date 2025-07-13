@@ -10,7 +10,7 @@
 
 #define tos(n) to_string(n)
 #define toc(n) '0' + n
-#define toi(s) stoi(s)
+#define toll(s) stoll(s)
 #define btoi(b) static_cast<ll>(b.to_ulong())
 
 using namespace std;
