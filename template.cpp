@@ -46,6 +46,10 @@ vll dx={1, 0, -1, 0};
 vll dy={0, 1, 0, -1};
 const ll MOD=1e9+7;
 
+/**
+ * 考察
+ *
+ */
 int main()
 {
   ios_base::sync_with_stdio(0);
