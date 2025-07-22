@@ -42,6 +42,10 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
+bool isRange(ll x, ll y, ll w, ll h){
+  return (0 <= x && x < w) && (0 <= y && y < h);
+}
+
 vll dx={1, 0, -1, 0};
 vll dy={0, 1, 0, -1};
 const ll MOD=1e9+7;

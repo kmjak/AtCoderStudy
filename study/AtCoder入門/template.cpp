@@ -10,24 +10,20 @@
 
 #define tos(n) to_string(n)
 #define toc(n) '0' + n
-#define toi(s) stoi(s)
-#define btoi(b) static_cast<int>(b.to_ulong())
+#define toll(s) stoll(s)
+#define btoi(b) static_cast<ll>(b.to_ulong())
 
 using namespace std;
 
 using ll=long long int;
-using pi=pair<int,int>;
-using qi=queue<int>;
-using qp=queue<pi>;
-using si=set<int>;
+using qll=queue<ll>;
+using dq=deque<ll>;
 
-using vi=vector<int>;
 using vll=vector<ll>;
 using vs=vector<string>;
 using vc=vector<char>;
 using vb=vector<bool>;
 
-using vvi=vector<vi>;
 using vvll=vector<vll>;
 
 template<typename T> inline bool chmin(T &a, T b) {
@@ -46,11 +42,18 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
-struct pnt {
-  ll x;
-  ll y;
-};
+bool isRange(ll x, ll y, ll w, ll h){
+  return (0 <= x && x < w) && (0 <= y && y < h);
+}
 
+vll dx={1, 0, -1, 0};
+vll dy={0, 1, 0, -1};
+const ll MOD=1e9+7;
+
+/**
+ * 考察
+ *
+ */
 int main()
 {
   ios_base::sync_with_stdio(0);
