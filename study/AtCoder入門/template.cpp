@@ -45,7 +45,7 @@ template<typename T> inline bool chmax(T &a, T b) {
 class SegmentTreeRMQ {
   public:
   vll data;
-  ll size;
+  ll size = 1;
 
   void init(ll N){
     while(size < N) size *= 2;
