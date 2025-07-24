@@ -47,8 +47,8 @@ class SegmentTreeRMQ {
   vll data;
   ll size = 1;
 
-  void init(ll N){
-    while(size < N) size *= 2;
+  void init(ll n){
+    while(size < n) size *= 2;
     data.assign(size * 2, 0);
   }
 
@@ -68,6 +68,35 @@ class SegmentTreeRMQ {
     ll al = query(l, r, bl, m, u*2);
     ll ar= query(l, r, m, br, u*2+1);
     return max(al, ar);
+  }
+};
+
+class SegmentTreeRSQ {
+  public:
+  vll data;
+  ll size = 1;
+
+  void init(ll n){
+    while(size < n) size *= 2;
+    data.assign(size * 2, 0);
+  }
+
+  void update(ll pos, ll x){
+    pos += size - 1;
+    data[pos] = x;
+    while(pos >= 2){
+      pos /= 2;
+      data[pos] = data[pos*2] + data[pos*2+1];
+    }
+  }
+
+  ll query(ll l, ll r, ll bl, ll br, ll u){
+    if(r <= bl || br <= l)return 0;
+    if(l <= bl && br <= r)return data[u];
+    ll m = (bl + br) / 2;
+    ll al = query(l, r, bl, m, u*2);
+    ll ar= query(l, r, m, br, u*2+1);
+    return al + ar;
   }
 };
 
