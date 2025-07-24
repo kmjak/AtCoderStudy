@@ -42,7 +42,7 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
-class SegmentTree {
+class SegmentTreeRMQ {
   public:
   vll data;
   ll size;
