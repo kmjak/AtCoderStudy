@@ -42,6 +42,35 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
+class SegmentTree {
+  public:
+  vll data;
+  ll size;
+
+  void init(ll N){
+    while(size < N) size *= 2;
+    data.assign(size * 2, 0);
+  }
+
+  void update(ll pos, ll x){
+    pos += size - 1;
+    data[pos] = x;
+    while(pos >= 2){
+      pos /= 2;
+      data[pos] = max(data[pos*2], data[pos*2+1]);
+    }
+  }
+
+  ll query(ll l, ll r, ll bl, ll br, ll u){
+    if(r <= bl || br <= l)return -1e18;
+    if(l <= bl && br <= r)return data[u];
+    ll m = (bl + br) / 2;
+    ll al = query(l, r, bl, m, u*2);
+    ll ar= query(l, r, m, br, u*2+1);
+    return max(al, ar);
+  }
+};
+
 bool isRange(ll x, ll y, ll w, ll h){
   return (0 <= x && x < w) && (0 <= y && y < h);
 }
@@ -54,8 +83,7 @@ const ll MOD=1e9+7;
  * 考察
  *
  */
-int main()
-{
+int main(){
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
