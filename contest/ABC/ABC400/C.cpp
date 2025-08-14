@@ -5,34 +5,25 @@
 
 #define mp make_pair
 #define mt make_tuple
-#define pb push_back
 #define eb emplace_back
 #define g(i,t) get<i>(t)
 
 #define tos(n) to_string(n)
 #define toc(n) '0' + n
-#define toi(s) stoi(s)
-#define btoi(b) static_cast<int>(b.to_ulong())
-
-#define bs(A,X) binary_search(all(A),X)
-#define lbs(A,X) lower_bound(all(A),X)
-#define ubs(A,X) upper_bound(all(A),X)
+#define toll(s) stoll(s)
+#define btoi(b) static_cast<ll>(b.to_ulong())
 
 using namespace std;
 
 using ll=long long int;
-using pi=pair<int,int>;
-using qi=queue<int>;
-using qp=queue<pi>;
-using si=set<int>;
+using qll=queue<ll>;
+using dq=deque<ll>;
 
-using vi=vector<int>;
 using vll=vector<ll>;
 using vs=vector<string>;
 using vc=vector<char>;
 using vb=vector<bool>;
 
-using vvi=vector<vi>;
 using vvll=vector<vll>;
 
 template<typename T> inline bool chmin(T &a, T b) {
@@ -51,38 +42,122 @@ template<typename T> inline bool chmax(T &a, T b) {
   return false;
 }
 
-struct pnt {
-  ll x;
-  ll y;
+class SegmentTreeRMQ {
+  public:
+  vll data;
+  ll size = 1;
+
+  void init(ll n){
+    while(size < n) size *= 2;
+    data.assign(size * 2, 0);
+  }
+
+  void update(ll pos, ll x){
+    pos += size - 1;
+    data[pos] = x;
+    while(pos >= 2){
+      pos /= 2;
+      data[pos] = max(data[pos*2], data[pos*2+1]);
+    }
+  }
+
+  ll query(ll l, ll r, ll bl, ll br, ll u){
+    if(r <= bl || br <= l)return -1e18;
+    if(l <= bl && br <= r)return data[u];
+    ll m = (bl + br) / 2;
+    ll al = query(l, r, bl, m, u*2);
+    ll ar= query(l, r, m, br, u*2+1);
+    return max(al, ar);
+  }
 };
 
-int main()
-{
+class SegmentTreeRSQ {
+  public:
+  vll data;
+  ll size = 1;
+
+  void init(ll n){
+    while(size < n) size *= 2;
+    data.assign(size * 2, 0);
+  }
+
+  void update(ll pos, ll x){
+    pos += size - 1;
+    data[pos] = x;
+    while(pos >= 2){
+      pos /= 2;
+      data[pos] = data[pos*2] + data[pos*2+1];
+    }
+  }
+
+  ll query(ll l, ll r, ll bl, ll br, ll u){
+    if(r <= bl || br <= l)return 0;
+    if(l <= bl && br <= r)return data[u];
+    ll m = (bl + br) / 2;
+    ll al = query(l, r, bl, m, u*2);
+    ll ar= query(l, r, m, br, u*2+1);
+    return al + ar;
+  }
+};
+
+bool isRange(ll x, ll y, ll w, ll h){
+  return (0 <= x && x < w) && (0 <= y && y < h);
+}
+
+vll dx={1, 0, -1, 0};
+vll dy={0, 1, 0, -1};
+const ll MOD=1e9+7;
+
+/**
+ * 考察
+ * N<=1e18
+ * Nは2^60よりも小さいのでaは60以下
+ * また、bは最大で1e9と大きい
+ *
+ * なのでaを基準にbを2分探索で解く
+ *
+ * 400の出力結果を見た時
+ * aiの値が1と2の時だけ見れば重複なく答えを求められることに気がついた。
+ * だめだった。
+ *
+ * l=0だったらとけた。なんで。
+ */
+int main(){
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
   ll N;cin>>N;
-  vll A;
-  vll B;
   ll res=0;
+  // set<ll> res;
 
-  for(ll i=2;i<=N;i*=2)A.eb(i);
-  for(ll i=1;i*i<=N;i++)B.eb(i*i);
-  int MAX_Bi=0;
-  int MIN_Bi=0;
-  int An=A.size();
-  int Bn=B.size();
+  long double a=2;
+  for(ll i=0;i<2;i++){
+    ll l=0;
+    ll r=1e9;
+    while(r-l>1){
+      ll m=(l+r)/2;
+      ll x=m*m;
 
-  // for(int Ai=0;Ai<An;Ai++){
-  //   ll a=A[Ai];
-  //   while(MAX_Bi<Bn&&a*B[MAX_Bi]*B[MAX_Bi]<N){
-  //     MAX_Bi++;
-  //   }
-  // }
-
-
+      if(x<=N/a){
+        l=m;
+      }else{
+        r=m;
+      }
+    }
+    // cout<<a<<": ";
+    // for(ll j=1;j<=l;j++){
+    //   ll x=j*j;
+    //   cout<<x*a<<" ";
+    // }
+    // cout<<endl;
+    res+=l;
+    a*=2;
+  }
   cout<<res<<endl;
+  // cout<<res.size()<<endl;
+  // for(ll x:res){
+  //   cout<<x<<" ";
+  // }
+  // cout<<endl;
   return 0;
 }
-
-// 1000000000000000000
