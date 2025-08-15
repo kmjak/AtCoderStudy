@@ -43,7 +43,7 @@ template<typename T> inline bool chmax(T &a, T b) {
 }
 
 class SegmentTreeRMQ {
-  public:
+public:
   vll data;
   ll size = 1;
 
@@ -72,7 +72,7 @@ class SegmentTreeRMQ {
 };
 
 class SegmentTreeRSQ {
-  public:
+public:
   vll data;
   ll size = 1;
 
@@ -100,18 +100,49 @@ class SegmentTreeRSQ {
   }
 };
 
+class UnionFind {
+public:
+  vll parent, size;
+
+  UnionFind(ll n) : parent(n, -1), size(n, 1) {}
+
+  ll find(ll x) {
+    if (parent[x] == -1) return x;
+    return parent[x] = find(parent[x]);
+  }
+
+  bool unite(ll a, ll b) {
+    a = find(a);
+    b = find(b);
+    if (a == b) return false;
+    if (size[a] < size[b]) swap(a, b);
+    parent[b] = a;
+    size[a] += size[b];
+    return true;
+  }
+
+  bool same(ll a, ll b) {
+    return find(a) == find(b);
+  }
+
+  ll getSize(ll x) {
+    return size[find(x)];
+  }
+};
+
 bool isRange(ll x, ll y, ll w, ll h){
   return (0 <= x && x < w) && (0 <= y && y < h);
 }
-
-vll dx={1, 0, -1, 0};
-vll dy={0, 1, 0, -1};
-const ll MOD=1e9+7;
 
 /**
  * 考察
  *
  */
+
+vll dx={1, 0, -1, 0};
+vll dy={0, 1, 0, -1};
+const ll MOD=1e9+7;
+
 int main(){
   ios_base::sync_with_stdio(0);
   cin.tie(0);
