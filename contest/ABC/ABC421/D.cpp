@@ -157,7 +157,7 @@ int main(){
   pair<ll,ll> T,A;
   cin>>T.first>>T.second>>A.first>>A.second;
   ll N,M,L;cin>>N>>M>>L;
-  if((T.first+A.first)%2 || (T.second+A.second)%2){
+  if((T.first+A.first)%2 == (T.second+A.second)%2){
     cout<<0<<endl;
     return 0;
   }
