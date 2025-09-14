@@ -10,7 +10,6 @@
 
 #define tos(n) to_string(n)
 #define toc(n) '0' + n
-#define toll(s) stoll(s)
 #define btoi(b) static_cast<ll>(b.to_ulong())
 
 using namespace std;
@@ -141,7 +140,8 @@ bool isRange(ll x, ll y, ll w, ll h){
 
 vll dx={1, 0, -1, 0};
 vll dy={0, 1, 0, -1};
-const ll MOD=1e9+7;
+const ll mod=1e9+7;
+const ll inf=1e18;
 
 int main(){
   ios_base::sync_with_stdio(0);
