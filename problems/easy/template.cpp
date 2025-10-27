@@ -6,7 +6,6 @@
 #define mp make_pair
 #define mt make_tuple
 #define eb emplace_back
-#define g(i,t) get<i>(t)
 
 #define tos(n) to_string(n)
 #define toc(n) '0' + n
