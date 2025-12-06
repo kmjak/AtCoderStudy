@@ -128,6 +128,41 @@ public:
   }
 };
 
+class IntervalSet {
+  set<pair<ll,ll>> intervals;
+  ll covered_length = 0;
+  ll infinity = 1e18;
+
+public:
+  bool merge(ll l, ll r){
+    auto it = intervals.lower_bound({l, infinity});
+    if(it!=intervals.begin()){
+      it--;
+      if(it->second<l-1)it++;
+    }
+    while(it != intervals.end() && it->first <= r + 1) {
+      chmin(l, it->first);
+      chmax(r, it->second);
+      covered_length -= (it->second - it->first + 1);
+      it=intervals.erase(it);
+    }
+    covered_length+=(r-l+1);
+    return intervals.insert({l,r}).second;
+  }
+
+  set<pair<ll,ll>> getIntervals() {
+    return intervals;
+  }
+
+  ll coveredLength() {
+    return covered_length;
+  }
+
+  size_t count() {
+    return intervals.size();
+  }
+};
+
 bool isRange(ll x, ll y, ll w, ll h){
   return (0 <= x && x < w) && (0 <= y && y < h);
 }
