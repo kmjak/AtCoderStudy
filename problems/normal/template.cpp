@@ -129,11 +129,11 @@ public:
 };
 
 class IntervalSet {
+  public:
   set<pair<ll,ll>> intervals;
   ll covered_length = 0;
   ll infinity = 1e18;
 
-public:
   bool merge(ll l, ll r){
     auto it = intervals.lower_bound({l, infinity});
     if(it!=intervals.begin()){
@@ -148,18 +148,6 @@ public:
     }
     covered_length+=(r-l+1);
     return intervals.insert({l,r}).second;
-  }
-
-  set<pair<ll,ll>> getIntervals() {
-    return intervals;
-  }
-
-  ll coveredLength() {
-    return covered_length;
-  }
-
-  size_t count() {
-    return intervals.size();
   }
 };
 
